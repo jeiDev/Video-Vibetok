@@ -8,16 +8,21 @@ class LegalController extends Controller
 {
     public function terms()
     {
-        return view('legal.terms'); 
+        return view('legal.terms');
     }
 
     public function privacy()
     {
-        return view('legal.privacy'); 
+        return view('legal.privacy');
     }
 
     public function dmca()
     {
-        return view('legal.dmca'); 
+        return view('legal.dmca');
+    }
+
+    public function howToUse()
+    {
+        return view('legal.how-to-use');
     }
 }

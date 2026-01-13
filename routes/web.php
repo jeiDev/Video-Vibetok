@@ -13,6 +13,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Ruta de descarga
 Route::get('/download/{id}', [DownloadController::class, 'index'])->name('download');
 
+// Cómo utilizar
+Route::get('/how-use', [LegalController::class, 'howToUse'])->name('howToUse');
+
 // Páginas Legales
 Route::get('/terms', [LegalController::class, 'terms'])->name('legal.terms');
 Route::get('/privacy', [LegalController::class, 'privacy'])->name('legal.privacy');
