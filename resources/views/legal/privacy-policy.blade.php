@@ -61,7 +61,7 @@
                                     Legal</span>
                                 <span class="flex items-center gap-1 text-gray-500 dark:text-gray-400 text-xs font-medium">
                                     <span class="material-symbols-outlined text-[16px]">schedule</span>
-                                    Vigencia: 24 de enero de 2026
+                                    Vigencia: 01 de enero de 2026
                                 </span>
                             </div>
                             <h1
@@ -194,7 +194,7 @@
                                 <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                                     Nuestro Servicio se sustenta mediante publicidad. Estos servidores de anuncios o redes
                                     publicitarias de terceros utilizan tecnología para que los anuncios y enlaces que
-                                    aparecen en TikTok Downloader se envíen directamente a su navegador. Ellos reciben
+                                    aparecen en {{ config('services.vars.appName') }} se envíen directamente a su navegador. Ellos reciben
                                     automáticamente su dirección IP cuando esto ocurre. Otras tecnologías (como cookies,
                                     JavaScript o Web Beacons) también pueden ser utilizadas por las redes publicitarias de
                                     terceros para medir la efectividad de sus anuncios y/o para personalizar el contenido
@@ -202,7 +202,7 @@
                                 </p>
                             </div>
                             <p class="text-gray-600 dark:text-gray-300 mt-4 text-sm">
-                                TikTok Downloader no tiene acceso ni control sobre estas cookies que son utilizadas por anunciantes externos. Usted debe consultar las políticas de privacidad respectivas de estos servidores de anuncios de terceros para obtener información más detallada sobre sus prácticas.
+                                {{ config('services.vars.appName') }} no tiene acceso ni control sobre estas cookies que son utilizadas por anunciantes externos. Usted debe consultar las políticas de privacidad respectivas de estos servidores de anuncios de terceros para obtener información más detallada sobre sus prácticas.
                             </p>
                         </section>
                         

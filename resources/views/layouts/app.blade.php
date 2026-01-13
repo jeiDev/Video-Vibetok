@@ -98,9 +98,9 @@
                         <div class="flex gap-6 flex-wrap justify-center">
                             <a 
                                 class="text-[#60758a] text-sm hover:text-primary dark:text-gray-500 dark:hover:text-cyan-400 transition-colors" 
-                                href="{{ route('legal.terms') }}"
+                                href="{{ route('legal.terms-conditions') }}"
                             >
-                                Términos de servicio
+                                Términos &amp; Condiciones
                             </a>
 
                             <a 
@@ -108,6 +108,13 @@
                                 href="{{ route('legal.privacy') }}"
                             >
                                 Política de privacidad
+                            </a>
+
+                            <a 
+                                class="text-[#60758a] text-sm hover:text-primary dark:text-gray-500 dark:hover:text-cyan-400 transition-colors" 
+                                href="{{ route('legal.cookie-policity') }}"
+                            >
+                                Política de cookies
                             </a>
 
                             <a 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Términos de servicio')
+@section('title', 'Política de cookies')
 
 @section('content')
 @endsection

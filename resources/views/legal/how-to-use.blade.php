@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Inicio')
+@section('title', 'Cómo utilizar')
 
 @section('content')
     <div class="flex-1 flex flex-col items-center py-10 px-4 md:px-10 lg:px-40 gap-12 w-full max-w-7xl mx-auto">
