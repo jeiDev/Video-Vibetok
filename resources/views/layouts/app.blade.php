@@ -88,37 +88,37 @@
                 @yield('content')
             </main>
 
-            <footer class="flex justify-center py-8 px-4 bg-white border-t border-[#e5e7eb] mt-auto">
+            <footer class="flex justify-center py-8 px-4 bg-white dark:bg-[#161616] border-t border-[#e5e7eb] dark:border-[#27272a] mt-auto">
                 <div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-6">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                        <div class="flex items-center gap-2 text-[#111418]">
-                            <span class="material-symbols-outlined text-primary">cloud_download</span>
+                        <div class="flex items-center gap-2 text-[#111418] dark:text-white">
+                            <span class="material-symbols-outlined text-primary dark:text-cyan-400">cloud_download</span>
                             <span class="text-sm font-bold">{{ config('services.vars.appName') }}</span>
                         </div>
                         <div class="flex gap-6 flex-wrap justify-center">
                             <a 
-                                class="text-[#60758a] text-sm hover:text-primary transition-colors" 
+                                class="text-[#60758a] text-sm hover:text-primary dark:text-gray-500 dark:hover:text-cyan-400 transition-colors" 
                                 href="{{ route('legal.terms') }}"
                             >
                                 Términos de servicio
                             </a>
 
                             <a 
-                                class="text-[#60758a] text-sm hover:text-primary transition-colors" 
+                                class="text-[#60758a] text-sm hover:text-primary dark:text-gray-500 dark:hover:text-cyan-400 transition-colors" 
                                 href="{{ route('legal.privacy') }}"
                             >
                                 Política de privacidad
                             </a>
 
                             <a 
-                                class="text-[#60758a] text-sm hover:text-primary transition-colors" 
+                                class="text-[#60758a] text-sm hover:text-primary dark:text-gray-500 dark:hover:text-cyan-400 transition-colors" 
                                 href="{{ route('contact') }}"    
                             >
                                 Contáctenos
                             </a>
 
                             <a 
-                                class="text-[#60758a] text-sm hover:text-primary transition-colors" 
+                                class="text-[#60758a] text-sm hover:text-primary dark:text-gray-500 dark:hover:text-cyan-400 transition-colors" 
                                 href="{{ route('legal.dmca') }}"
                             >
                                 DMCA
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div class="text-center md:text-left">
-                        <p class="text-[#9ca3af] text-xs">© {{ date('Y') }} {{ config('services.vars.appName') }}. No estamos afiliados a TikTok.</p>
+                        <p class="text-[#9ca3af] dark:text-gray-600 text-xs">© {{ date('Y') }} {{ config('services.vars.appName') }}. No estamos afiliados a TikTok.</p>
                     </div>
                 </div>
             </footer>
