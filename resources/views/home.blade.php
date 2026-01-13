@@ -24,11 +24,16 @@
                         <input
                             class="flex w-full min-w-0 flex-1 resize-none bg-transparent border-none text-[#111418] focus:outline-none focus:ring-0 h-14 placeholder:text-[#9ca3af] px-4 text-base font-normal leading-normal"
                             placeholder="Pega el enlace de TikTok aquí..." value="" />
-                        <button
-                            class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[#22c55e] hover:bg-[#16a34a] text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md hover:shadow-lg transition-all transform active:scale-95">
-                            <span class="truncate mr-2">Descargar</span>
-                            <span class="material-symbols-outlined text-[20px]">download</span>
-                        </button>
+
+                            <a
+                                 href="{{ route('download', [1]) }}"
+                            >
+                                <button
+                                    class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[#22c55e] hover:bg-[#16a34a] text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                                    <span class="truncate mr-2">Descargar</span>
+                                    <span class="material-symbols-outlined text-[20px]">download</span>
+                                </button>
+                            </a>
                     </div>
                 </label>
                 <div class="flex items-center justify-center gap-2 mt-3 text-sm text-[#60758a]">

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Ruta de descarga
-Route::get('/download', [DownloadController::class, 'index'])->name('download');
+Route::get('/download/{id}', [DownloadController::class, 'index'])->name('download');
 
 // Páginas Legales
 Route::get('/terms', [LegalController::class, 'terms'])->name('legal.terms');
