@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en">
+<html class="light" lang="es">
 
 <head>
     <meta charset="utf-8" />
@@ -19,31 +19,36 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#258cf4",
-                        "background-light": "#f5f7f8",
-                        "background-dark": "#101922",
+                        "primary": "#3b82f6", 
+                        "primary-hover": "#60a5fa",
+                        "background-dark": "#000000", 
+                        "surface-dark": "#0a0a0a", 
+                        "surface-hover": "#171717",
+                        "text-main": "#f3f4f6",
+                        "text-muted": "#9ca3af", 
+                        "border-dark": "#262626", 
                     },
                     fontFamily: {
-                        "display": ["Spline Sans", "sans-serif"],
-                        "body": ["Noto Sans", "sans-serif"]
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+                        "body": ["Spline Sans", "Noto Sans", "sans-serif"],
                     },
-                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "full": "9999px"},
                 },
             },
         }
     </script>
 </head>
 
-<body>
+<body class="bg-white dark:bg-background-dark text-[#111418] dark:text-text-main font-display transition-colors duration-200 antialiased selection:bg-primary/30 selection:text-white">
     <div
         class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden font-display">
         <header
-            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e5e7eb] bg-white px-10 py-3 sticky top-0 z-50">
-            <div class="flex items-center gap-4 text-[#111418]">
+            class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f0f2f5] dark:border-border-dark bg-white/90 dark:bg-black/80 backdrop-blur-md px-6 lg:px-10 py-4">
+            <div class="flex items-center gap-4 text-[#111418] dark:text-white">
                 <div class="size-8 flex items-center justify-center text-primary">
                     <span class="material-symbols-outlined text-[32px]">cloud_download</span>
                 </div>
-                <h2 class="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em]">{{ config('services.vars.appName') }}</h2>
+                <h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">{{ config('services.vars.appName') }}</h2>
             </div>
             <div class="flex flex-1 justify-end gap-8">
                 <div class="hidden md:flex items-center gap-9">
@@ -70,7 +75,7 @@
 
                     <a 
                         class="text-sm font-medium leading-normal text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" 
-                        href="{{ route('home') }}"
+                        href="{{ route('legal.faq') }}"
                     >
                         FAQ
                     </a>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Inicio')
+@section('title', 'Descargar')
 
 @section('content')
     <div class="flex flex-1 justify-center py-8 px-4 md:px-6">

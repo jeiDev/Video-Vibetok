@@ -20,6 +20,7 @@ Route::get('/how-use', [LegalController::class, 'howToUse'])->name('howToUse');
 Route::get('/terms', [LegalController::class, 'terms'])->name('legal.terms');
 Route::get('/privacy', [LegalController::class, 'privacy'])->name('legal.privacy');
 Route::get('/dmca', [LegalController::class, 'dmca'])->name('legal.dmca');
+Route::get('/faq', [LegalController::class, 'faq'])->name('legal.faq');
 
 // Página de Contacto
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
