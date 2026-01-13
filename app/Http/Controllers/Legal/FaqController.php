@@ -1,32 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Legal;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LegalController extends Controller
+class FaqController extends Controller
 {
-    public function terms()
-    {
-        return view('legal.terms');
-    }
-
-    public function privacy()
-    {
-        return view('legal.privacy');
-    }
-
-    public function dmca()
-    {
-        return view('legal.dmca');
-    }
-
-    public function howToUse()
-    {
-        return view('legal.how-to-use');
-    }
-
-    public function faq(Request $request)
+    public function index(Request $request)
     {
         $currentCategory = $request->query('category', '');
 
