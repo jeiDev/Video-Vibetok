@@ -102,7 +102,7 @@
                     <div class="flex flex-col gap-3">
                         <a 
                             class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group"
-                            href="{{ route('legal.terms') }}"
+                            href="{{ route('legal.terms-conditions') }}"
                         >
                             <div
                                 class="size-10 rounded-full bg-blue-50 dark:bg-slate-700 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
