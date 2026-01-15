@@ -20,9 +20,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Ruta de descarga
 Route::prefix('download')->group(function () {
     Route::get('/', [DownloadController::class, 'index'])->name('download');
-    Route::get('/hd', [DownloadController::class, 'hd'])->name('download.hd');
-    Route::get('/hd-wm', [DownloadController::class, 'hdWm'])->name('download.hd-wm');
-    Route::get('/mp3', [DownloadController::class, 'mp3'])->name('download.mp3');
+    Route::get('/hd', [DownloadController::class, 'downloadHd'])->name('download.hd');
+    Route::get('/hd-wm', [DownloadController::class, 'downloadHdWm'])->name('download.hd-wm');
+    Route::get('/mp3', [DownloadController::class, 'downloadMp3'])->name('download.mp3');
     Route::get('/thumbnail', [DownloadController::class, 'thumbnail'])->name('download.thumbnail');
 });
 

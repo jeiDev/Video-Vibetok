@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Response;
 
 class DownloadController extends Controller
 {
-    private $flaskBase = 'http://127.0.0.1:5000';
+    private $flaskBase;
+
+    public function __construct()
+    {
+        $this->flaskBase = config('services.vars.apiTiktok');
+    }
 
     public function index(Request $request)
     {
@@ -32,14 +37,15 @@ class DownloadController extends Controller
     }
 
     public function downloadHd(Request $request)
-    {
-        $videoUrl = $request->input('video_url');
+    {   
+        $videoUrl = $request->query('video_url');
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json'
         ])->post($this->flaskBase . '/download/hd', [
-                    'url' => $videoUrl
-                ]);
+            'url' => $videoUrl
+        ]);
+
 
         // Retornar el archivo directamente al cliente
         return response($response->body(), 200)
@@ -50,7 +56,7 @@ class DownloadController extends Controller
 
     public function downloadHdWm(Request $request)
     {
-        $videoUrl = $request->input('video_url');
+        $videoUrl = $request->query('video_url');
 
         // Llamar a Flask
         $response = Http::withHeaders([
@@ -63,7 +69,6 @@ class DownloadController extends Controller
             return response()->json(['error' => 'No se pudo descargar HD con watermark'], 500);
         }
 
-        // Nombre de archivo temporal para enviar al cliente
         $filename = 'video_hd_wm_' . Str::random(6) . '.mp4';
 
         return response($response->body(), 200)
@@ -76,7 +81,7 @@ class DownloadController extends Controller
      */
     public function downloadMp3(Request $request)
     {
-        $videoUrl = $request->input('video_url');
+        $videoUrl = $request->query('video_url');
 
         // Llamar a Flask
         $response = Http::withHeaders([

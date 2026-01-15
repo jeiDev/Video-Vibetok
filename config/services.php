@@ -32,5 +32,6 @@ return [
     ],
     'vars' => [
         'appName' => env('APP_NAME', 'Video Vibe Tok'),
+        'apiTiktok' => env('API_TIKTOK', 'http://127.0.0.1:5000')
     ],
 ];

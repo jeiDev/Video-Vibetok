@@ -5,7 +5,8 @@
 @section('content')
     @php
         if (!function_exists('formatViews')) {
-            function formatViews($number) {
+            function formatViews($number)
+            {
                 if ($number >= 1000000000) {
                     return round($number / 1000000000, 1) . 'B';
                 } elseif ($number >= 1000000) {
@@ -18,7 +19,8 @@
         }
 
         if (!function_exists('formatDuration')) {
-            function formatDuration($seconds) {
+            function formatDuration($seconds)
+            {
                 $hours = floor($seconds / 3600);
                 $minutes = floor(($seconds % 3600) / 60);
                 $secs = $seconds % 60;
@@ -54,18 +56,18 @@
                         <div class="flex flex-col gap-4">
                             <div
                                 class="relative w-full aspect-[9/16] bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden group">
-                                <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="Vertical video thumbnail of a person dancing outdoors"
-                                    style="
-                                        @if(!empty($info['thumbnail']))
-                                            background-image: url('{{ route('download.thumbnail') }}?thumbnail={{ $info['thumbnail'] }}');
-                                        @else
-                                            background-color: #000;
-                                        @endif
-                                    ">
+                                <div id="videoThumb"
+                                    class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
+                                    data-alt="Vertical video thumbnail of a person dancing outdoors" style="
+                                            @if(!empty($info['thumbnail']))
+                                                background-image: url('{{ route('download.thumbnail') }}?thumbnail={{ $info['thumbnail'] }}');
+                                            @else
+                                                background-color: #000;
+                                            @endif
+                                        ">
                                 </div>
                                 <div class="absolute inset-0 bg-black/10"></div>
-                                <div
+                                <div id="playButton"
                                     class="absolute center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm p-4 rounded-full cursor-pointer hover:bg-white/30 transition-all">
                                     <span class="material-symbols-outlined text-white text-4xl">play_arrow</span>
                                 </div>
@@ -73,6 +75,11 @@
                                     class="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded-md text-white text-xs font-bold">
                                     {{ formatDuration($info['duration'] ?? 0) }}
                                 </div>
+
+                                <video id="videoPlayer" class="absolute inset-0 w-full h-full hidden rounded-xl" controls>
+                                    <source src="{{ route('download.hd') }}?video_url={{ $video_url }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
                             <div class="flex flex-col gap-2 px-1">
                                 <h3
@@ -120,8 +127,9 @@
 
                     <div class="flex flex-col gap-4">
                         @if(!empty($info['hd_no_watermark']))
-                            <button
-                                class="group relative flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-16 px-2 pr-6 bg-primary hover:bg-blue-600 transition-all text-white shadow-lg shadow-blue-500/30">
+                            <a href="{{ route('download.hd', ['video_url' => $video_url]) }}"
+                                class="group relative flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-16 px-2 pr-6 bg-primary hover:bg-blue-600 transition-all text-white shadow-lg shadow-blue-500/30"
+                                download>
                                 <div class="flex items-center gap-4 h-full">
                                     <div class="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center ml-2">
                                         <span
@@ -134,17 +142,16 @@
                                             • MP4</span>
                                     </div>
                                 </div>
-                                <span
-                                    class="text-sm font-bold bg-white/20 px-3 py-1 rounded-full text-white backdrop-blur-sm">{{$info['hd_no_watermark']['size_mb']}}
-                                    MB</span>
-                            </button>
-                        @else
-                                           
+                                <span class="text-sm font-bold bg-white/20 px-3 py-1 rounded-full text-white backdrop-blur-sm">
+                                    {{$info['hd_no_watermark']['size_mb']}} MB
+                                </span>
+                            </a>
                         @endif
 
                         @if(!empty($info['hd_watermark']))
-                            <button
-                                class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all text-[#111418] dark:text-white">
+                            <a href="{{ route('download.hd-wm', ['video_url' => $video_url]) }}"
+                                class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all text-[#111418] dark:text-white"
+                                download>
                                 <div class="flex items-center gap-4 h-full">
                                     <div
                                         class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ml-2 group-hover:bg-primary/10">
@@ -152,19 +159,20 @@
                                             class="material-symbols-outlined text-gray-600 dark:text-gray-300 group-hover:text-primary">sd</span>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <span class="text-sm md:text-base font-bold">Descargar Video SD</span>
+                                        <span class="text-sm md:text-base font-bold">Descargar Video HD</span>
                                         <span class="text-xs text-gray-500 dark:text-gray-400">Con marca de agua incluida</span>
                                     </div>
                                 </div>
-                                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">{{ $info['hd_watermark']['size_mb'] }} MB</span>
-                            </button>
-                        @else
-                                           
+                                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">
+                                    {{ $info['hd_watermark']['size_mb'] }} MB
+                                </span>
+                            </a>
                         @endif
 
                         @if(!empty($info['audio_mp3']))
-                            <button
-                                class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-pink-400/50 hover:bg-pink-50 dark:hover:bg-pink-900/10 transition-all text-[#111418] dark:text-white">
+                            <a href="{{ route('download.mp3', ['video_url' => $video_url]) }}"
+                                class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-pink-400/50 hover:bg-pink-50 dark:hover:bg-pink-900/10 transition-all text-[#111418] dark:text-white"
+                                download>
                                 <div class="flex items-center gap-4 h-full">
                                     <div
                                         class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ml-2 group-hover:bg-pink-100 dark:group-hover:bg-pink-900/30">
@@ -176,11 +184,12 @@
                                         <span class="text-xs text-gray-500 dark:text-gray-400">Solo audio</span>
                                     </div>
                                 </div>
-                                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">{{ $info['audio_mp3']['size_mb'] }} MB</span>
-                            </button>
-                        @else
-                                           
+                                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">
+                                    {{ $info['audio_mp3']['size_mb'] }} MB
+                                </span>
+                            </a>
                         @endif
+
                     </div>
 
                     <div class="w-full mt-2">
@@ -225,9 +234,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="mt-12 border-t border-gray-100 dark:border-gray-800 pt-10">
-                <h3 class="text-xl font-bold mb-4 text-[#111418] dark:text-white">¿Por qué usar {{ config('services.vars.appName') }}?</h3>
+                <h3 class="text-xl font-bold mb-4 text-[#111418] dark:text-white">¿Por qué usar
+                    {{ config('services.vars.appName') }}?</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="flex flex-col gap-2">
                         <div
@@ -235,7 +245,8 @@
                             <span class="material-symbols-outlined">bolt</span>
                         </div>
                         <h4 class="font-bold text-sm">Más rápido que el rayo</h4>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Nuestros servidores dedicados garantizan que sus descargas comiencen al instante sin colas.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Nuestros servidores dedicados garantizan que sus
+                            descargas comiencen al instante sin colas.</p>
                     </div>
                     <div class="flex flex-col gap-2">
                         <div
@@ -243,7 +254,8 @@
                             <span class="material-symbols-outlined">water_drop</span>
                         </div>
                         <h4 class="font-bold text-sm">Sin marcas de agua</h4>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Obtén la calidad del video original de forma limpia sin la superposición del logo saltarín.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Obtén la calidad del video original de forma
+                            limpia sin la superposición del logo saltarín.</p>
                     </div>
                     <div class="flex flex-col gap-2">
                         <div
@@ -251,10 +263,25 @@
                             <span class="material-symbols-outlined">devices</span>
                         </div>
                         <h4 class="font-bold text-sm">Todos los dispositivos</h4>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Funciona perfectamente en iPhone, Android, MacOS, Windows y Linux.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Funciona perfectamente en iPhone, Android,
+                            MacOS, Windows y Linux.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const playButton = document.getElementById('playButton');
+        const videoThumb = document.getElementById('videoThumb');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        playButton.addEventListener('click', () => {
+            videoThumb.classList.add('hidden'); // Ocultar la miniatura
+            playButton.classList.add('hidden'); // Ocultar el botón de play
+            videoPlayer.classList.remove('hidden'); // Mostrar el video
+            videoPlayer.play(); // Reproducir
+        });
+    </script>
+
 @endsection
