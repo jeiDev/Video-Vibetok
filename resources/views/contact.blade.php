@@ -55,12 +55,14 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div
                     class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-lg p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/20 border border-slate-100 dark:border-slate-800">
-                    <form class="flex flex-col gap-6">
+                    <form class="flex flex-col gap-6" action="{{ route('contact.send') }}" method="POST">
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <label class="flex flex-col gap-2">
                                 <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Nombre completo</span>
                                 <div class="relative">
                                     <input
+                                        name="name"
                                         class="w-full h-12 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                                         placeholder="Ingrese su nombre completo" type="text" />
                                     <span
@@ -71,6 +73,7 @@
                                 <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Correo electrónico</span>
                                 <div class="relative">
                                     <input
+                                        name="email"
                                         class="w-full h-12 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                                         placeholder="you@example.com" type="email" />
                                     <span
@@ -82,11 +85,13 @@
                             <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Asunto</span>
                             <div class="relative">
                                 <select
+                                    name="subject"
                                     class="w-full h-12 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-900 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all cursor-pointer">
                                     <option>Seleccione un tema...</option>
                                     <option>Problema de descarga</option>
                                     <option>Sugerencia de función</option>
                                     <option>Reporte de error</option>
+                                    <option>Anuncios</option>
                                     <option>Otro</option>
                                 </select>
                                 <span
@@ -96,6 +101,7 @@
                         <label class="flex flex-col gap-2">
                             <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Mensaje</span>
                             <textarea
+                                name="message"
                                 class="w-full min-h-[160px] rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-y transition-all"
                                 placeholder="Describa su problema en detalle..."></textarea>
                             <div class="flex justify-end px-2">
@@ -103,15 +109,6 @@
                             </div>
                         </label>
                         
-                        <div
-                            class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl max-w-xs self-start">
-                            <div
-                                class="w-5 h-5 border-2 border-slate-300 dark:border-slate-600 rounded bg-white dark:bg-slate-900 cursor-pointer hover:border-primary transition-colors">
-                            </div>
-                            <span class="text-sm text-slate-600 dark:text-slate-300 select-none">No soy un robot</span>
-                            <span class="material-symbols-outlined text-slate-400 ml-auto"
-                                style="font-size: 20px;">security</span>
-                        </div>
                         <button
                             class="mt-2 h-12 w-full md:w-auto self-start rounded-full bg-primary px-8 text-white font-bold text-sm hover:bg-blue-600 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
                             type="submit">
@@ -135,8 +132,8 @@
                                     <p
                                         class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Envíenos un correo electrónico directamente</p>
                                     <a class="text-slate-900 dark:text-white font-medium hover:text-primary transition-colors break-all"
-                                        href="mailto:support@tiktokdownloader.com">
-                                        support@tiktokdownloader.com
+                                        href="mailto:support@videovibetok.com">
+                                        support@videovibetok.com
                                     </a>
                                 </div>
                             </div>

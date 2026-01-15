@@ -3,6 +3,34 @@
 @section('title', 'Descargar')
 
 @section('content')
+    @php
+        if (!function_exists('formatViews')) {
+            function formatViews($number) {
+                if ($number >= 1000000000) {
+                    return round($number / 1000000000, 1) . 'B';
+                } elseif ($number >= 1000000) {
+                    return round($number / 1000000, 1) . 'M';
+                } elseif ($number >= 1000) {
+                    return round($number / 1000, 1) . 'K';
+                }
+                return $number;
+            }
+        }
+
+        if (!function_exists('formatDuration')) {
+            function formatDuration($seconds) {
+                $hours = floor($seconds / 3600);
+                $minutes = floor(($seconds % 3600) / 60);
+                $secs = $seconds % 60;
+
+                if ($hours > 0) {
+                    return sprintf("%02d:%02d:%02d", $hours, $minutes, $secs);
+                }
+                return sprintf("%01d:%02d", $minutes, $secs);
+            }
+        }
+    @endphp
+
     <div class="flex flex-1 justify-center py-8 px-4 md:px-6">
         <div class="flex flex-col max-w-[1080px] flex-1 gap-8">
             <div class="w-full flex justify-center">
@@ -28,7 +56,13 @@
                                 class="relative w-full aspect-[9/16] bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden group">
                                 <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
                                     data-alt="Vertical video thumbnail of a person dancing outdoors"
-                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDztz5ImYlV40y6sa5oxYHlGas6HDZSVOkBqkIglmINx1ages3EWpqscgiYPWyerVI2t1I8BMdi9fwMCjPWAydyzbgTAiiFaDVs9XwJk8EIxKnphU-FuRIDP6qHfal1XL65cnhh4C6lIz4qqJTL9xO2F_fE60GgtaL02KF35wZz3Nzr8Ta8VijnF3XYWuGSq4pt6BUf28iIOzR7LF-3ksAA7uAEh1xAZszqBI4SVf7SXyaeApxE_2kKESJ4Xnqv9Vly8WNPlYoOQaE');">
+                                    style="
+                                        @if(!empty($info['thumbnail']))
+                                            background-image: url('{{ route('download.thumbnail') }}?thumbnail={{ $info['thumbnail'] }}');
+                                        @else
+                                            background-color: #000;
+                                        @endif
+                                    ">
                                 </div>
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <div
@@ -37,13 +71,13 @@
                                 </div>
                                 <div
                                     class="absolute bottom-3 right-3 bg-black/60 px-2 py-1 rounded-md text-white text-xs font-bold">
-                                    0:45
+                                    {{ formatDuration($info['duration'] ?? 0) }}
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2 px-1">
                                 <h3
                                     class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">
-                                    Trending Dance Challenge 2024
+                                    {{$info['title']}}
                                 </h3>
                                 <div class="flex items-center justify-between text-[#60758a] dark:text-gray-400 text-sm">
                                     <div class="flex items-center gap-2">
@@ -51,11 +85,13 @@
                                             data-alt="User profile avatar"
                                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1iiLQyZfrm9cb4jEgYZN4K5g4diyhO2I9iHHH56g7uuHkzpezS7Sz36ACXHX0hZ_pmHOYClVQtcGZVUBKmLWCgFQ1x4SGDP1-vJd8zF1szQysmDtKaaaLP6RanoPHePietwGiUhQdFKArUjji9F6TB8AHsbwGNqM7TSWIpb6Lh4w9ADR8a6wzSC8vSOVx-cmSZHqm2i88aoypBKFFOvPWUBvNmGysL13SROxuZzNmkLF_6KAcHq_dPdWD9DNOmQHGlnSl0gIWfKE')">
                                         </div>
-                                        <span class="font-medium">@dance_master_x</span>
+                                        <a href={{$info['uploader_url']}} target="_blank">
+                                            <span class="font-medium">{{ "@" }}{{$info['username']}}</span>
+                                        </a>
                                     </div>
                                     <div class="flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[16px]">visibility</span>
-                                        <span>15.4M views</span>
+                                        <span>{{formatViews($info['view_count'] ?? 0)}} vistas</span>
                                     </div>
                                 </div>
                             </div>
@@ -83,56 +119,68 @@
                     </div>
 
                     <div class="flex flex-col gap-4">
-                        <button
-                            class="group relative flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-16 px-2 pr-6 bg-primary hover:bg-blue-600 transition-all text-white shadow-lg shadow-blue-500/30">
-                            <div class="flex items-center gap-4 h-full">
-                                <div class="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center ml-2">
-                                    <span
-                                        class="material-symbols-outlined text-white text-2xl group-hover:animate-bounce">download</span>
+                        @if(!empty($info['hd_no_watermark']))
+                            <button
+                                class="group relative flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-16 px-2 pr-6 bg-primary hover:bg-blue-600 transition-all text-white shadow-lg shadow-blue-500/30">
+                                <div class="flex items-center gap-4 h-full">
+                                    <div class="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center ml-2">
+                                        <span
+                                            class="material-symbols-outlined text-white text-2xl group-hover:animate-bounce">download</span>
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <span class="text-base md:text-lg font-bold uppercase tracking-wide">Descargar Video
+                                            HD</span>
+                                        <span class="text-xs md:text-sm text-blue-100 opacity-90 font-medium">Sin marca de agua
+                                            • MP4</span>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col items-start">
-                                    <span class="text-base md:text-lg font-bold uppercase tracking-wide">Descargar Video
-                                        HD</span>
-                                    <span class="text-xs md:text-sm text-blue-100 opacity-90 font-medium">Sin marca de agua
-                                        • MP4</span>
-                                </div>
-                            </div>
-                            <span
-                                class="text-sm font-bold bg-white/20 px-3 py-1 rounded-full text-white backdrop-blur-sm">12.5
-                                MB</span>
-                        </button>
+                                <span
+                                    class="text-sm font-bold bg-white/20 px-3 py-1 rounded-full text-white backdrop-blur-sm">{{$info['hd_no_watermark']['size_mb']}}
+                                    MB</span>
+                            </button>
+                        @else
+                                           
+                        @endif
 
-                        <button
-                            class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all text-[#111418] dark:text-white">
-                            <div class="flex items-center gap-4 h-full">
-                                <div
-                                    class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ml-2 group-hover:bg-primary/10">
-                                    <span
-                                        class="material-symbols-outlined text-gray-600 dark:text-gray-300 group-hover:text-primary">sd</span>
+                        @if(!empty($info['hd_watermark']))
+                            <button
+                                class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all text-[#111418] dark:text-white">
+                                <div class="flex items-center gap-4 h-full">
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ml-2 group-hover:bg-primary/10">
+                                        <span
+                                            class="material-symbols-outlined text-gray-600 dark:text-gray-300 group-hover:text-primary">sd</span>
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <span class="text-sm md:text-base font-bold">Descargar Video SD</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">Con marca de agua incluida</span>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col items-start">
-                                    <span class="text-sm md:text-base font-bold">Descargar Video SD</span>
-                                    <span class="text-xs text-gray-500 dark:text-gray-400">Con marca de agua incluida</span>
-                                </div>
-                            </div>
-                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400">8.2 MB</span>
-                        </button>
+                                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">{{ $info['hd_watermark']['size_mb'] }} MB</span>
+                            </button>
+                        @else
+                                           
+                        @endif
 
-                        <button
-                            class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-pink-400/50 hover:bg-pink-50 dark:hover:bg-pink-900/10 transition-all text-[#111418] dark:text-white">
-                            <div class="flex items-center gap-4 h-full">
-                                <div
-                                    class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ml-2 group-hover:bg-pink-100 dark:group-hover:bg-pink-900/30">
-                                    <span
-                                        class="material-symbols-outlined text-gray-600 dark:text-gray-300 group-hover:text-pink-500">headphones</span>
+                        @if(!empty($info['audio_mp3']))
+                            <button
+                                class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-pink-400/50 hover:bg-pink-50 dark:hover:bg-pink-900/10 transition-all text-[#111418] dark:text-white">
+                                <div class="flex items-center gap-4 h-full">
+                                    <div
+                                        class="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center ml-2 group-hover:bg-pink-100 dark:group-hover:bg-pink-900/30">
+                                        <span
+                                            class="material-symbols-outlined text-gray-600 dark:text-gray-300 group-hover:text-pink-500">headphones</span>
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <span class="text-sm md:text-base font-bold">Descargar Audio MP3</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">Solo audio</span>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col items-start">
-                                    <span class="text-sm md:text-base font-bold">Descargar Audio MP3</span>
-                                    <span class="text-xs text-gray-500 dark:text-gray-400">Solo audio</span>
-                                </div>
-                            </div>
-                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400">3.1 MB</span>
-                        </button>
+                                <span class="text-xs font-medium text-gray-500 dark:text-gray-400">{{ $info['audio_mp3']['size_mb'] }} MB</span>
+                            </button>
+                        @else
+                                           
+                        @endif
                     </div>
 
                     <div class="w-full mt-2">
