@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 class DownloadController extends Controller
 {
@@ -16,114 +18,146 @@ class DownloadController extends Controller
         $this->flaskBase = config('services.vars.apiTiktok');
     }
 
-    public function index(Request $request)
+    private function dispatchToQueue($url)
     {
-        $videoUrl = $request->query('video_url');
+        $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+        $channel = $connection->channel();
+        $channel->queue_declare('tiktok_tasks', false, true, false, false);
 
-        $response = Http::post($this->flaskBase . '/info', [
-            'url' => $videoUrl
+        $payload = json_encode([
+            'url' => $url,
+            'id' => uniqid(),
+            'headers' => [
+                'User-Agent' => request()->header('User-Agent'),
+                'Accept-Language' => request()->header('Accept-Language'),
+                'Sec-CH-UA' => request()->header('sec-ch-ua'),
+                'Sec-CH-UA-Platform' => request()->header('sec-ch-ua-platform'),
+                'Sec-CH-UA-Mobile' => request()->header('sec-ch-ua-mobile'),
+                'X-Forwarded-For' => request()->ip(),
+            ]
         ]);
 
+        $msg = new AMQPMessage($payload, [
+            'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
+        ]);
+
+        $channel->basic_publish($msg, '', 'tiktok_tasks');
+
+        $channel->close();
+        $connection->close();
+
+        return json_decode($payload)->id;
+    }
+
+    public function index(Request $request, $id)
+    {
+        $response = Http::get($this->flaskBase . '/info' . '/' . $id);
+
         if ($response->failed()) {
-            return response()->json(['error' => 'No se pudo obtener info del video'], 500);
+            return view(view: 'errors.404');
         }
 
         $data = $response->json();
 
+
         return view(view: 'download', data: [
-            'video_url' => $videoUrl,
-            'info' => $data
+            'info' => $data,
+            'id' => $id
         ]);
     }
 
-    public function downloadHd(Request $request)
-    {   
-        $videoUrl = $request->query('video_url');
-
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post($this->flaskBase . '/download/hd', [
-            'url' => $videoUrl
-        ]);
-
-
-        // Retornar el archivo directamente al cliente
-        return response($response->body(), 200)
-            ->header('Content-Type', $response->header('Content-Type'))
-            ->header('Content-Disposition', $response->header('Content-Disposition'));
-    }
-
-
-    public function downloadHdWm(Request $request)
+    public function download(Request $request)
     {
-        $videoUrl = $request->query('video_url');
+        $request->validate([
+            'video_url' => [
+                'required',
+                'url',
+                'regex:/^(https?:\/\/)?(www\.|vm\.|vt\.)?tiktok\.com\/.*$/i'
+            ]
+        ], [
+            'video_url.required' => 'La URL es obligatoria.',
+            'video_url.url' => 'El formato debe ser una URL válida.',
+            'video_url.regex' => 'Solo se permiten enlaces oficiales de TikTok.'
+        ]);
 
-        // Llamar a Flask
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post($this->flaskBase . '/download/hd-wm', [
-                    'url' => $videoUrl
-                ]);
+        $cleanUrl = $this->sanitizeTikTokUrl($request->input('video_url'));
+        $taskId = $this->dispatchToQueue($cleanUrl);
+
+        return response()->json([
+            'status' => 'queued',
+            'task_id' => $taskId,
+            'message' => 'Enlace de TikTok validado correctamente.'
+        ]);
+    }
+
+    private function sanitizeTikTokUrl($url)
+    {
+        $url = strtok($url, '#');
+        $url = strtok($url, '?');
+
+        return $url;
+    }
+
+    public function downloadHD(Request $request, $id)
+    {
+
+        $response = Http::get($this->flaskBase . '/download/hd' . '/' . $id);
 
         if ($response->failed()) {
-            return response()->json(['error' => 'No se pudo descargar HD con watermark'], 500);
+            return response()->json(['error' => 'No se pudo descargar HD'], 500);
         }
 
-        $filename = 'video_hd_wm_' . Str::random(6) . '.mp4';
+        $filename = 'video_hd_' . Str::random(6) . '.mp4';
 
         return response($response->body(), 200)
             ->header('Content-Type', 'video/mp4')
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
     }
 
-    /**
-     * Descargar audio MP3
-     */
-    public function downloadMp3(Request $request)
+    public function downloadSD(Request $request, $id)
     {
-        $videoUrl = $request->query('video_url');
 
-        // Llamar a Flask
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post($this->flaskBase . '/download/mp3', [
-                    'url' => $videoUrl
-                ]);
+        $response = Http::get($this->flaskBase . '/download/sd' . '/' . $id);
+
+        if ($response->failed()) {
+            return response()->json(['error' => 'No se pudo descargar SD'], 500);
+        }
+
+        $filename = 'video_sd_' . Str::random(6) . '.mp4';
+
+        return response($response->body(), 200)
+            ->header('Content-Type', 'video/mp4')
+            ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
+    }
+
+
+    public function downloadMP3(Request $request, $id)
+    {
+        $response = Http::get($this->flaskBase . '/download/mp3' . '/' . $id);
 
         if ($response->failed()) {
             return response()->json(['error' => 'No se pudo descargar MP3'], 500);
         }
 
-        // Nombre de archivo temporal para enviar al cliente
         $filename = 'audio_' . Str::random(6) . '.mp3';
 
         return response($response->body(), 200)
-            ->header('Content-Type', 'audio/mpeg')
+            ->header('Content-Type', 'video/mp4')
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
     }
 
-    public function thumbnail(Request $request)
+    public function thumbnail(Request $request, $id)
     {
-        $thumbnail = $request->query('thumbnail'); // Recibimos la URL por query
 
-        if (!$thumbnail) {
-            return response()->json(['error' => 'Se requiere el parámetro thumbnail'], 400);
+        $response = Http::get($this->flaskBase . '/assets' . '/' . $id . '/'.'thumbnail.jpg');
+
+        if ($response->failed()) {
+            return response()->json(['error' => 'No se pudo descargar la imagen'], 500);
         }
 
-        try {
-            $flaskResponse = Http::timeout(30)->get($this->flaskBase . '/thumbnail/' . $thumbnail);
-
-            if ($flaskResponse->failed()) {
-                return response()->json(['error' => 'No se pudo generar la miniatura'], 500);
-            }
-
-            return Response::make($flaskResponse->body(), 200, [
-                'Content-Type' => 'image/jpeg',
-                'Content-Disposition' => 'inline; filename="thumbnail.jpg"'
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al conectar con el backend Flask', 'details' => $e->getMessage()], 500);
-        }
+        return Response::make($response->body(), 200, [
+            'Content-Type' => 'image/jpeg',
+            'Content-Disposition' => 'inline; filename="thumbnail.jpg"'
+        ]);
     }
 }

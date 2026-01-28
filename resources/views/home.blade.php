@@ -7,7 +7,7 @@
 @section('meta-keywords', 'descargar videos tiktok gratis, descarga rapida tiktok, tiktok downloader, videos tiktok sin marca de agua, descargar mp4 tiktok, downloader tiktok gratis, tiktok video download, descargar tiktok hd')
 
 @section('content')
-    <div class="flex flex-1 justify-center py-10 px-4 bg-gradient-to-b from-white to-[#f0f9ff]">
+    <div class="flex flex-1 justify-center py-10 px-4 bg-gradient-to-b from-white to-[#f0f9ff]" id="container-download">
         <div class="layout-content-container flex flex-col max-w-[960px] flex-1 items-center text-center gap-8">
             <div class="flex flex-col gap-4 max-w-[720px]">
                 <h1 class="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
@@ -29,18 +29,57 @@
                             class="flex w-full min-w-0 flex-1 resize-none bg-transparent border-none text-[#111418] focus:outline-none focus:ring-0 h-14 placeholder:text-[#9ca3af] px-4 text-base font-normal leading-normal"
                             placeholder="Pega el enlace de TikTok aquí..." value="" />
 
-                        <a id="download-link" href="{{ route('download') }}">
-                            <button
-                                class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[#22c55e] hover:bg-[#16a34a] text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md hover:shadow-lg transition-all transform active:scale-95">
-                                <span class="truncate mr-2">Descargar</span>
-                                <span class="material-symbols-outlined text-[20px]">download</span>
-                            </button>
-                        </a>
+                        <button
+                            class="btn-download flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-[#22c55e] hover:bg-[#16a34a] text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md hover:shadow-lg transition-all transform active:scale-95">
+                            <span class="truncate mr-2">Descargar</span>
+                            <span class="material-symbols-outlined text-[20px]">download</span>
+                        </button>
                     </div>
                 </label>
+                <div id="container-message"
+                    class="hidden w-full bg-red-50 border border-red-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div class="flex items-center gap-3 text-left">
+                        <div
+                            class="size-10 flex-shrink-0 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined">error</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <p class="text-red-800 text-sm font-semibold" id="status-text"></p>
+                            <p class="text-red-700/80 text-xs">Por favor, comprueba la URL e inténtalo de nuevo.</p>
+                        </div>
+                    </div>
+                    <button
+                        class="btn-download flex items-center justify-center gap-2 px-4 py-2 bg-white border border-red-200 text-red-700 hover:bg-red-50 text-sm font-bold rounded-full transition-colors shadow-sm whitespace-nowrap">
+                        <span class="material-symbols-outlined text-lg">refresh</span>
+                        <span>Intentar de nuevo</span>
+                    </button>
+                </div>
                 <div class="flex items-center justify-center gap-2 mt-3 text-sm text-[#60758a]">
                     <span class="material-symbols-outlined text-[16px] text-[#22c55e]">check_circle</span>
                     <span>100% Seguro &amp; Gratuito</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-1 justify-center py-20 px-4 bg-gradient-to-b from-white to-[#f0f9ff] hidden"
+        id="container-loading">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1 items-center text-center gap-12">
+            <div class="flex flex-col gap-4 max-w-[720px]">
+                <h1 class="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
+                    Obteniendo tu video
+                </h1>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-8 py-10">
+                <div class="relative flex items-center justify-center">
+                    <div class="absolute size-32 rounded-full bg-accent-green/20 blur-xl"></div>
+                    <div class="relative size-32 rounded-full border-4 border-gray-100 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-accent-green text-5xl">movie</span>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <p class="text-[#111418] text-2xl font-bold tracking-tight">Procesando tu video...</p>
+                    <p class="text-[#60758a] text-lg">Por favor espera un momento mientras eliminamos la marca de agua.</p>
                 </div>
             </div>
         </div>
@@ -172,19 +211,72 @@
             </div>
         </div>
     </div>
+@endsection
 
-    <script>
-        const input = document.getElementById('tiktok-url');
-        const link = document.getElementById('download-link');
+@push('scripts')
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('tiktok-url');
+            const btnDownload = document.getElementById('btn-download');
+            const statusText = document.getElementById('status-text');
+            const containerDownload = document.getElementById('container-download');
+            const containerLoading = document.getElementById('container-loading')
+            const containerMessage = document.getElementById('container-message');
 
-        // Actualizar href cuando cambia el input
-        input.addEventListener('input', () => {
-            const url = encodeURIComponent(input.value.trim());
-            if (url) {
-                link.href = `{{ route('download') }}?video_url=${url}`;
-            } else {
-                link.href = `{{ route('download') }}`;
-            }
+            Array.from(document.querySelectorAll(".btn-download") || []).forEach(btnDownload => {
+
+                btnDownload.addEventListener('click', async () => {
+                    const videoUrl = input.value.trim();
+                    if (!videoUrl) return alert("Pega una URL válida");
+
+                    containerMessage.classList.add("hidden")
+                    statusText.innerText = ''
+                    containerDownload.classList.add("hidden")
+                    containerLoading.classList.remove("hidden")
+
+
+                    try {
+                        const response = await fetch("{{ route('download') }}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                video_url: videoUrl
+                            })
+                        });
+
+                        const data = await response.json();
+
+                        if (!response.ok) throw new Error(data.message);
+
+                        const taskId = data.task_id;
+
+                        if (window.Echo) {
+                            statusText.innerText = "Video en cola. Esperando respuesta del servidor...";
+
+                            window.Echo.channel(`download.${taskId}`)
+                                .listen('.status.updated', (e) => {
+                                    if (e.status === 'completed') {
+                                        location.href = "{{ route('view-download', ':id') }}".replace(':id', e.taskId);
+                                    } else {
+                                        containerLoading.classList.add("hidden")
+                                        containerDownload.classList.remove("hidden")
+                                        containerMessage.classList.remove("hidden")
+                                        statusText.innerText = "Error al procesar el video.";
+                                    }
+                                });
+                        }
+                    } catch (error) {
+                        containerLoading.classList.add("hidden")
+                        containerDownload.classList.remove("hidden")
+                        containerMessage.classList.remove("hidden")
+                        statusText.innerText = `${error.message || ""}`.split("(")[0];
+                    }
+                });
+            })
         });
     </script>
-@endsection
+@endpush

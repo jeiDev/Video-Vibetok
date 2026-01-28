@@ -59,12 +59,9 @@
                                 <div id="videoThumb"
                                     class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
                                     data-alt="Vertical video thumbnail of a person dancing outdoors" style="
-                                            @if(!empty($info['thumbnail']))
-                                                background-image: url('{{ route('download.thumbnail') }}?thumbnail={{ $info['thumbnail'] }}');
-                                            @else
-                                                background-color: #000;
-                                            @endif
-                                        ">
+                                          background-image: url('{{ route('download.thumbnail', ['id' => $id]) }}');
+                                                
+                                            ">
                                 </div>
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <div id="playButton"
@@ -77,7 +74,7 @@
                                 </div>
 
                                 <video id="videoPlayer" class="absolute inset-0 w-full h-full hidden rounded-xl" controls>
-                                    <source src="{{ route('download.hd') }}?video_url={{ $video_url }}" type="video/mp4">
+                                    <source src="{{ route('download.hd', ['id' => $id]) }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -92,13 +89,13 @@
                                             data-alt="User profile avatar"
                                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1iiLQyZfrm9cb4jEgYZN4K5g4diyhO2I9iHHH56g7uuHkzpezS7Sz36ACXHX0hZ_pmHOYClVQtcGZVUBKmLWCgFQ1x4SGDP1-vJd8zF1szQysmDtKaaaLP6RanoPHePietwGiUhQdFKArUjji9F6TB8AHsbwGNqM7TSWIpb6Lh4w9ADR8a6wzSC8vSOVx-cmSZHqm2i88aoypBKFFOvPWUBvNmGysL13SROxuZzNmkLF_6KAcHq_dPdWD9DNOmQHGlnSl0gIWfKE')">
                                         </div>
-                                        <a href={{$info['uploader_url']}} target="_blank">
-                                            <span class="font-medium">{{ "@" }}{{$info['username']}}</span>
+                                        <a href={{$info['uploader']['profile']}} target="_blank">
+                                            <span class="font-medium">{{ "@" }}{{$info['uploader']['name']}}</span>
                                         </a>
                                     </div>
                                     <div class="flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[16px]">visibility</span>
-                                        <span>{{formatViews($info['view_count'] ?? 0)}} vistas</span>
+                                        <span>{{formatViews($info['stats']['views'] ?? 0)}} vistas</span>
                                     </div>
                                 </div>
                             </div>
@@ -126,8 +123,8 @@
                     </div>
 
                     <div class="flex flex-col gap-4">
-                        @if(!empty($info['hd_no_watermark']))
-                            <a href="{{ route('download.hd', ['video_url' => $video_url]) }}"
+                        @if(!empty($info['files']['hd']))
+                            <a href="{{ route('download.hd', ['id' => $id]) }}"
                                 class="group relative flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-16 px-2 pr-6 bg-primary hover:bg-blue-600 transition-all text-white shadow-lg shadow-blue-500/30"
                                 download>
                                 <div class="flex items-center gap-4 h-full">
@@ -143,13 +140,13 @@
                                     </div>
                                 </div>
                                 <span class="text-sm font-bold bg-white/20 px-3 py-1 rounded-full text-white backdrop-blur-sm">
-                                    {{$info['hd_no_watermark']['size_mb']}} MB
+                                    {{$info['files']['hd']['size']['mb']}} MB
                                 </span>
                             </a>
                         @endif
 
-                        @if(!empty($info['hd_watermark']))
-                            <a href="{{ route('download.hd-wm', ['video_url' => $video_url]) }}"
+                        @if(!empty($info['files']['sd']))
+                            <a href="{{ route('download.sd', ['id' => $id]) }}"
                                 class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all text-[#111418] dark:text-white"
                                 download>
                                 <div class="flex items-center gap-4 h-full">
@@ -159,18 +156,18 @@
                                             class="material-symbols-outlined text-gray-600 dark:text-gray-300 group-hover:text-primary">sd</span>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <span class="text-sm md:text-base font-bold">Descargar Video HD</span>
-                                        <span class="text-xs text-gray-500 dark:text-gray-400">Con marca de agua incluida</span>
+                                        <span class="text-sm md:text-base font-bold">Descargar Video SD</span>
+                                        <span class="text-xs text-gray-500 dark:text-gray-400">Sin marca de agua • MP4</span>
                                     </div>
                                 </div>
                                 <span class="text-xs font-medium text-gray-500 dark:text-gray-400">
-                                    {{ $info['hd_watermark']['size_mb'] }} MB
+                                    {{$info['files']['sd']['size']['mb']}} MB
                                 </span>
                             </a>
                         @endif
 
-                        @if(!empty($info['audio_mp3']))
-                            <a href="{{ route('download.mp3', ['video_url' => $video_url]) }}"
+                        @if(!empty($info['files']['mp3']))
+                            <a href="{{ route('download.mp3', ['id' => $id]) }}"
                                 class="group flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-full h-14 px-2 pr-6 bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-700 hover:border-pink-400/50 hover:bg-pink-50 dark:hover:bg-pink-900/10 transition-all text-[#111418] dark:text-white"
                                 download>
                                 <div class="flex items-center gap-4 h-full">
@@ -185,7 +182,7 @@
                                     </div>
                                 </div>
                                 <span class="text-xs font-medium text-gray-500 dark:text-gray-400">
-                                    {{ $info['audio_mp3']['size_mb'] }} MB
+                                    {{$info['files']['mp3']['size']['mb']}} MB
                                 </span>
                             </a>
                         @endif
@@ -237,7 +234,8 @@
 
             <div class="mt-12 border-t border-gray-100 dark:border-gray-800 pt-10">
                 <h3 class="text-xl font-bold mb-4 text-[#111418] dark:text-white">¿Por qué usar
-                    {{ config('services.vars.appName') }}?</h3>
+                    {{ config('services.vars.appName') }}?
+                </h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="flex flex-col gap-2">
                         <div

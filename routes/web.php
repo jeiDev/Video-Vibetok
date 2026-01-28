@@ -5,12 +5,10 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Legal\CookiePolicityController;
 use App\Http\Controllers\Legal\DisclaimerController;
-use App\Http\Controllers\Legal\DMCAController;
 use App\Http\Controllers\Legal\FaqController;
 use App\Http\Controllers\Legal\HowUseController;
 use App\Http\Controllers\Legal\PrivacyPolicyController;
 use App\Http\Controllers\Legal\TermsConditionsController;
-use App\Http\Controllers\LegalController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,11 +17,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Ruta de descarga
 Route::prefix('download')->group(function () {
-    Route::get('/', [DownloadController::class, 'index'])->name('download');
-    Route::get('/hd', [DownloadController::class, 'downloadHd'])->name('download.hd');
-    Route::get('/hd-wm', [DownloadController::class, 'downloadHdWm'])->name('download.hd-wm');
-    Route::get('/mp3', [DownloadController::class, 'downloadMp3'])->name('download.mp3');
-    Route::get('/thumbnail', [DownloadController::class, 'thumbnail'])->name('download.thumbnail');
+    Route::get('/{id}', [DownloadController::class, 'index'])->name('view-download');
+    Route::get('/{id}/hd', [DownloadController::class, 'downloadHD'])->name('download.hd');
+    Route::get('/{id}/sd', [DownloadController::class, 'downloadSD'])->name('download.sd');
+    Route::get('/{id}/mp3', [DownloadController::class, 'downloadMP3'])->name('download.mp3');
+    Route::get('/{id}/thumbnail', [DownloadController::class, 'thumbnail'])->name('download.thumbnail');
 });
 
 // Cómo utilizar

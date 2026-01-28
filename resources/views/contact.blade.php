@@ -10,11 +10,11 @@
                     Contactar con soporte
                 </h1>
                 <p class="text-slate-500 dark:text-slate-400 text-lg md:text-xl font-normal max-w-2xl mx-auto">
-                    ¿Tiene algún problema? Estamos aquí para ayudarle. <br class="hidden md:block" /> Nuestro equipo suele responder en menos de
-                    within <span class="text-primary font-semibold">24 horas</span>.
+                    ¿Tiene algún problema? Estamos aquí para ayudarle. <br class="hidden md:block" /> Nuestro equipo suele
+                    responder en menos de <span class="text-primary font-semibold">24 horas</span>.
                 </p>
             </div>
-            
+
             <div class="bg-white dark:bg-slate-900 rounded-lg p-6 shadow-sm border border-slate-100 dark:border-slate-800">
                 <h2
                     class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight mb-4 flex items-center gap-2">
@@ -55,14 +55,46 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div
                     class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-lg p-8 shadow-lg shadow-slate-200/50 dark:shadow-black/20 border border-slate-100 dark:border-slate-800">
+
+                    @if(session('success'))
+                        <div
+                            class="mb-4 w-full bg-green-50 border border-green-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div class="flex items-center gap-3 text-left">
+                                <div
+                                    class="size-10 flex-shrink-0 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined">check</span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <p class="text-green-800 text-sm font-semibold" id="status-text"></p>
+                                    <p class="text-green-700/80 text-xs">{{ session('success') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div
+                            class="mb-4 w-full bg-red-50 border border-red-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div class="flex items-center gap-3 text-left">
+                                <div
+                                    class="size-10 flex-shrink-0 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined">error</span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <p class="text-red-800 text-sm font-semibold" id="status-text"></p>
+                                    <p class="text-red-700/80 text-xs">{{ session('error') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     <form class="flex flex-col gap-6" action="{{ route('contact.send') }}" method="POST">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <label class="flex flex-col gap-2">
-                                <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Nombre completo</span>
+                                <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Nombre
+                                    completo</span>
                                 <div class="relative">
-                                    <input
-                                        name="name"
+                                    <input name="name"
                                         class="w-full h-12 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                                         placeholder="Ingrese su nombre completo" type="text" />
                                     <span
@@ -70,10 +102,10 @@
                                 </div>
                             </label>
                             <label class="flex flex-col gap-2">
-                                <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Correo electrónico</span>
+                                <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Correo
+                                    electrónico</span>
                                 <div class="relative">
-                                    <input
-                                        name="email"
+                                    <input name="email"
                                         class="w-full h-12 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                                         placeholder="you@example.com" type="email" />
                                     <span
@@ -84,8 +116,7 @@
                         <label class="flex flex-col gap-2">
                             <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Asunto</span>
                             <div class="relative">
-                                <select
-                                    name="subject"
+                                <select name="subject"
                                     class="w-full h-12 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-slate-900 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all cursor-pointer">
                                     <option>Seleccione un tema...</option>
                                     <option>Problema de descarga</option>
@@ -100,15 +131,14 @@
                         </label>
                         <label class="flex flex-col gap-2">
                             <span class="text-slate-900 dark:text-white text-sm font-semibold ml-2">Mensaje</span>
-                            <textarea
-                                name="message"
+                            <textarea name="message"
                                 class="w-full min-h-[160px] rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-5 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-y transition-all"
                                 placeholder="Describa su problema en detalle..."></textarea>
                             <div class="flex justify-end px-2">
                                 <span class="text-xs text-slate-400 dark:text-slate-500">0 / 500 caracteres</span>
                             </div>
                         </label>
-                        
+
                         <button
                             class="mt-2 h-12 w-full md:w-auto self-start rounded-full bg-primary px-8 text-white font-bold text-sm hover:bg-blue-600 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
                             type="submit">
@@ -117,7 +147,7 @@
                         </button>
                     </form>
                 </div>
-                
+
                 <div class="flex flex-col gap-6">
                     <div
                         class="bg-primary/5 dark:bg-slate-900 rounded-lg p-6 border border-primary/10 dark:border-slate-800">
@@ -130,7 +160,8 @@
                                 </div>
                                 <div>
                                     <p
-                                        class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Envíenos un correo electrónico directamente</p>
+                                        class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+                                        Envíenos un correo electrónico directamente</p>
                                     <a class="text-slate-900 dark:text-white font-medium hover:text-primary transition-colors break-all"
                                         href="mailto:support@videovibetok.com">
                                         support@videovibetok.com
@@ -151,7 +182,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div
                         class="flex-1 min-h-[300px] bg-slate-200 dark:bg-slate-800 rounded-lg flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 border-2 border-dashed border-slate-300 dark:border-slate-700 p-4 relative overflow-hidden group">
                         <div
@@ -159,7 +190,8 @@
                         </div>
                         <span class="material-symbols-outlined text-4xl mb-2">ads_click</span>
                         <span class="text-sm font-medium uppercase tracking-widest">Anuncio</span>
-                        <span class="text-xs mt-2 text-center opacity-70">Apóyenos desactivando el bloqueador de anuncios</span>
+                        <span class="text-xs mt-2 text-center opacity-70">Apóyenos desactivando el bloqueador de
+                            anuncios</span>
                     </div>
                 </div>
             </div>

@@ -7,37 +7,42 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    
+
     public function send(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string|max:500',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'subject' => 'required|string|max:255',
+                'message' => 'required|string|max:500',
+            ]);
 
-        $datos = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message,
-        ];
+            $datos = $request->only(['name', 'email', 'subject', 'message']);
 
-        Mail::raw(
-            "Nuevo mensaje de contacto:\n\nNombre: {$datos['name']}\nCorreo: {$datos['email']}\nAsunto: {$datos['subject']}\nMensaje: {$datos['message']}",
-            function ($mail) use ($datos) {
-                $mail->to(env('MAIL_SUPPORT'))              
-                    ->subject('Nuevo mensaje: ' . $datos['subject'])
-                    ->replyTo($datos['email'], $datos['name']);
-            }
-        );
+            Mail::raw(
+                "Nuevo mensaje de contacto:\n\nNombre: {$datos['name']}\nCorreo: {$datos['email']}\nAsunto: {$datos['subject']}\nMensaje: {$datos['message']}",
+                function ($mail) use ($datos) {
+                    $mail->to(env('MAIL_SUPPORT'))
+                        ->subject('Nuevo mensaje: ' . $datos['subject'])
+                        ->replyTo($datos['email'], $datos['name']);
+                }
+            );
 
-        return back()->with('success', 'Tu mensaje ha sido enviado correctamente.');
+            return back()->with('success', 'Tu mensaje ha sido enviado correctamente.');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            throw $e;
+
+        } catch (\Exception $e) {
+            return back()
+                ->withInput() 
+                ->with('error', 'Lo sentimos, hubo un problema al enviar el mensaje. Inténtalo más tarde.');
+        }
     }
 
     public function index()
     {
-        return view('contact'); 
+        return view('contact');
     }
 }
