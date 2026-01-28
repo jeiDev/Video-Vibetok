@@ -5,12 +5,12 @@
 @section('content')
 
     <main class="flex-grow container mx-auto px-4 md:px-6 py-8 md:py-12 max-w-6xl">
-        <div class="w-full flex justify-center mb-12">
+        <!-- <div class="w-full flex justify-center mb-12">
             <div
                 class="w-full max-w-[728px] h-[90px] bg-slate-200 dark:bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 text-sm border border-slate-300 dark:border-slate-700 border-dashed">
                 <span class="font-medium tracking-wider">ESPACIO PUBLICITARIO (728x90)</span>
             </div>
-        </div>
+        </div> -->
         <div class="flex flex-col lg:flex-row gap-8 lg:gap-16">
             <div class="flex-1 min-w-0">
                 <div class="mb-8">
@@ -129,12 +129,12 @@
                     </div>
                 </div>
                 
-                <div class="hidden lg:flex w-full justify-center">
+                <!-- <div class="hidden lg:flex w-full justify-center">
                     <div
                         class="w-[300px] h-[600px] bg-slate-200 dark:bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 text-sm border border-slate-300 dark:border-slate-700 border-dashed text-center p-4">
                         <span class="font-medium tracking-wider">ESPACIO PUBLICITARIO<br />(300x600)</span>
                     </div>
-                </div>
+                </div> -->
             </aside>
         </div>
     </main>

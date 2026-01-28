@@ -189,7 +189,7 @@
 
                     </div>
 
-                    <div class="w-full mt-2">
+                    <!-- <div class="w-full mt-2">
                         <div
                             class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-gray-50 dark:bg-[#1a2632] border border-gray-100 dark:border-gray-800 p-4 relative overflow-hidden">
                             <span
@@ -209,7 +209,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="mt-4 flex flex-col items-center gap-6">
                         <div

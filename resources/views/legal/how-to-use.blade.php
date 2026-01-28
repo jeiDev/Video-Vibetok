@@ -16,12 +16,12 @@
             </p>
         </section>
         
-        <div
+        <!-- <div
             class="w-full max-w-[728px] h-[90px] bg-slate-200 dark:bg-slate-800 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-slate-300 dark:border-slate-700">
             <span
                 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Publicidad</span>
             <span class="text-sm text-slate-500 dark:text-slate-400">Anuncio de cabecera (728x90)</span>
-        </div>
+        </div> -->
         
         <section class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 relative mt-8">
             <div
@@ -85,12 +85,12 @@
             </div>
         </section>
         
-        <div
+        <!-- <div
             class="w-full max-w-[960px] h-[250px] bg-slate-200 dark:bg-slate-800 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-slate-300 dark:border-slate-700 my-8">
             <span
                 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Publicidad</span>
             <span class="text-sm text-slate-500 dark:text-slate-400">Anuncio Billboard (970x250)</span>
-        </div>
+        </div> -->
         
         <section class="w-full max-w-4xl flex flex-col gap-12 text-left">
             <div

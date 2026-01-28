@@ -183,7 +183,7 @@
                         </div>
                     </div>
 
-                    <div
+                    <!-- <div
                         class="flex-1 min-h-[300px] bg-slate-200 dark:bg-slate-800 rounded-lg flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 border-2 border-dashed border-slate-300 dark:border-slate-700 p-4 relative overflow-hidden group">
                         <div
                             class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-400 via-gray-100 to-transparent">
@@ -192,7 +192,7 @@
                         <span class="text-sm font-medium uppercase tracking-widest">Anuncio</span>
                         <span class="text-xs mt-2 text-center opacity-70">Apóyenos desactivando el bloqueador de
                             anuncios</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

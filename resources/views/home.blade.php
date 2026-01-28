@@ -85,14 +85,14 @@
         </div>
     </div>
 
-    <div class="flex justify-center w-full bg-white py-8 px-4">
+    <!-- <div class="flex justify-center w-full bg-white py-8 px-4">
         <div
             class="w-full max-w-[960px] h-[90px] bg-[#f0f2f5] border border-[#dbe0e6] border-dashed rounded-xl flex items-center justify-center relative overflow-hidden">
             <div class="absolute inset-0 flex items-center justify-center">
                 <p class="text-[#9ca3af] text-sm font-medium tracking-wider uppercase">Espacio publicitario (728x90)</p>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="flex justify-center bg-white py-12 px-4 border-t border-[#f0f2f5]">
         <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="w-full lg:w-[300px] flex-shrink-0 flex flex-col gap-4">
+            <!-- <div class="w-full lg:w-[300px] flex-shrink-0 flex flex-col gap-4">
                 <div
                     class="w-full aspect-square bg-white border border-[#dbe0e6] rounded-xl flex items-center justify-center relative overflow-hidden shadow-sm">
                     <div class="absolute inset-0 bg-gray-50 flex flex-col items-center justify-center p-4 text-center">
@@ -208,7 +208,7 @@
                     <p class="text-xs text-[#60758a]">También puedes descargar solo el audio MP3 si solo quieres la música!
                     </p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 @endsection
