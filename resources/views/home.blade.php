@@ -186,7 +186,7 @@
                             <span class="material-symbols-outlined text-[24px]">water_drop</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">✓ Sin Marca de Agua</h3>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">Sin Marca de Agua</h3>
                             <p class="text-[#60758a] text-sm">Obtén videos limpios sin el logo de TikTok ni superposiciones.
                                 Descarga MP4 original de alta calidad.</p>
                         </div>
@@ -197,7 +197,7 @@
                             <span class="material-symbols-outlined text-[24px]">hd</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">✓ Calidad HD/4K</h3>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">Calidad HD/4K</h3>
                             <p class="text-[#60758a] text-sm">Preservamos la calidad original del video de TikTok. Descarga
                                 en la máxima resolución disponible.</p>
                         </div>
@@ -208,7 +208,7 @@
                             <span class="material-symbols-outlined text-[24px]">block</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">✓ Sin Registro</h3>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">Sin Registro</h3>
                             <p class="text-[#60758a] text-sm">Completamente gratis para usar sin necesidad de crear cuenta,
                                 login o compartir datos personales.</p>
                         </div>
@@ -219,7 +219,7 @@
                             <span class="material-symbols-outlined text-[24px]">all_inclusive</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">✓ Descargas Ilimitadas</h3>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">Descargas Ilimitadas</h3>
                             <p class="text-[#60758a] text-sm">Descarga todos los videos de TikTok que quieras, sin límites
                                 de cantidad ni restricciones de tiempo.</p>
                         </div>
