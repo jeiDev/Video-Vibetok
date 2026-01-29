@@ -54,18 +54,18 @@
     <div class="flex flex-1 justify-center py-8 px-4 md:px-6">
         <div class="flex flex-col max-w-[1080px] flex-1 gap-8">
             <!-- <div class="w-full flex justify-center">
-                            <div
-                                class="w-full max-w-[960px] h-24 bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center relative overflow-hidden">
-                                <span
-                                    class="text-xs text-gray-400 absolute top-2 right-2 border border-gray-300 dark:border-gray-600 px-1 rounded">Ad</span>
-                                <div class="w-full h-full bg-cover bg-center opacity-50"
-                                    data-alt="abstract gray advertising banner pattern"
-                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMPFGKzL_c9Glb7Z74thgPiLhsHXrcizvo5Fk4dAxhLqHl3ErEVKWx2sfc1RpSLS4uOkP3MysOj530YcoXDcxXIMOUf3RT_o5LLJhtgQ605n3sA0JiVF0GbFIy-O3B3Md1jQ350rEbVm5YLwhb4mTL1-ioIRDLvdEIziGEFemI4dQTtlcNiuwDR8rMl3XHJmN1Yr4bH2fdQrO0YSvRYiUkxXSamPINNzn-1WY1V9lXe3fAAUJUGaPeICnWSezN_CZbdB1Y8AUvxdQ');">
-                                </div>
-                                <p class="absolute text-gray-500 dark:text-gray-400 font-medium">Espacio para anuncio de banner superior
-                                </p>
-                            </div>
-                        </div> -->
+                                    <div
+                                        class="w-full max-w-[960px] h-24 bg-gray-200 dark:bg-gray-800 rounded-xl flex items-center justify-center relative overflow-hidden">
+                                        <span
+                                            class="text-xs text-gray-400 absolute top-2 right-2 border border-gray-300 dark:border-gray-600 px-1 rounded">Ad</span>
+                                        <div class="w-full h-full bg-cover bg-center opacity-50"
+                                            data-alt="abstract gray advertising banner pattern"
+                                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCMPFGKzL_c9Glb7Z74thgPiLhsHXrcizvo5Fk4dAxhLqHl3ErEVKWx2sfc1RpSLS4uOkP3MysOj530YcoXDcxXIMOUf3RT_o5LLJhtgQ605n3sA0JiVF0GbFIy-O3B3Md1jQ350rEbVm5YLwhb4mTL1-ioIRDLvdEIziGEFemI4dQTtlcNiuwDR8rMl3XHJmN1Yr4bH2fdQrO0YSvRYiUkxXSamPINNzn-1WY1V9lXe3fAAUJUGaPeICnWSezN_CZbdB1Y8AUvxdQ');">
+                                        </div>
+                                        <p class="absolute text-gray-500 dark:text-gray-400 font-medium">Espacio para anuncio de banner superior
+                                        </p>
+                                    </div>
+                                </div> -->
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 <div class="lg:col-span-5 flex flex-col gap-4">
@@ -77,9 +77,9 @@
                                 <div id="videoThumb"
                                     class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105"
                                     data-alt="Vertical video thumbnail of a person dancing outdoors" style="
-                                                      background-image: url('{{ route('download.thumbnail', ['id' => $id]) }}');
+                                                              background-image: url('{{ route('download.thumbnail', ['id' => $id]) }}');
 
-                                                        ">
+                                                                ">
                                 </div>
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <div id="playButton"
@@ -121,11 +121,11 @@
                     </div>
 
                     <!-- <div
-                                    class="lg:hidden w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center relative border border-dashed border-gray-300 dark:border-gray-700">
-                                    <span
-                                        class="text-xs text-gray-400 absolute top-2 right-2 bg-white dark:bg-black px-1 rounded">Ad</span>
-                                    <p class="text-gray-400">Anuncio integrado para móviles</p>
-                                </div> -->
+                                            class="lg:hidden w-full h-64 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center relative border border-dashed border-gray-300 dark:border-gray-700">
+                                            <span
+                                                class="text-xs text-gray-400 absolute top-2 right-2 bg-white dark:bg-black px-1 rounded">Ad</span>
+                                            <p class="text-gray-400">Anuncio integrado para móviles</p>
+                                        </div> -->
                 </div>
 
                 <div class="lg:col-span-7 flex flex-col gap-6">
@@ -230,26 +230,26 @@
                     </div>
 
                     <!-- <div class="w-full mt-2">
-                                    <div
-                                        class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-gray-50 dark:bg-[#1a2632] border border-gray-100 dark:border-gray-800 p-4 relative overflow-hidden">
-                                        <span
-                                            class="text-[10px] uppercase font-bold text-gray-400 absolute top-2 right-2 tracking-wider">Publicidad</span>
-                                        <div class="flex flex-row items-center gap-4">
-                                            <div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0"
-                                                data-alt="Promotional graphic for a VPN service"
-                                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuApASqun83E4kKbtSWWpfSI9UllRsAmE41mH-u46Ai6wYOpdJBTuIC-IlIgh27r67EYGMeAsw5t3xV1-sYYVulVWqgDw_SuBff-sb-fGxw9ZtXhVPwFNUW2isvBmwKbRo20SRb9bAC3qx6y-OPIiOCAWo9h41t5zM30bM_UCAonc6c3xnaIFKg6L0w6URnZ_QfQfOw1X7GWR7gTR5QZNlU2UkI2CgHZF4dgCYyjomeHvCU5a1KWlQU5xF1ZlISEQCwleXU4fUHPifY");'>
+                                            <div
+                                                class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-gray-50 dark:bg-[#1a2632] border border-gray-100 dark:border-gray-800 p-4 relative overflow-hidden">
+                                                <span
+                                                    class="text-[10px] uppercase font-bold text-gray-400 absolute top-2 right-2 tracking-wider">Publicidad</span>
+                                                <div class="flex flex-row items-center gap-4">
+                                                    <div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-lg shrink-0"
+                                                        data-alt="Promotional graphic for a VPN service"
+                                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuApASqun83E4kKbtSWWpfSI9UllRsAmE41mH-u46Ai6wYOpdJBTuIC-IlIgh27r67EYGMeAsw5t3xV1-sYYVulVWqgDw_SuBff-sb-fGxw9ZtXhVPwFNUW2isvBmwKbRo20SRb9bAC3qx6y-OPIiOCAWo9h41t5zM30bM_UCAonc6c3xnaIFKg6L0w6URnZ_QfQfOw1X7GWR7gTR5QZNlU2UkI2CgHZF4dgCYyjomeHvCU5a1KWlQU5xF1ZlISEQCwleXU4fUHPifY");'>
+                                                    </div>
+                                                    <div class="flex flex-col gap-1 pr-8">
+                                                        <p class="text-[#111418] dark:text-white text-base font-bold leading-tight">
+                                                            Asegura tus descargas con FastVPN</p>
+                                                        <p class="text-[#60758a] dark:text-gray-400 text-sm">Protege tu privacidad mientras
+                                                            navegas. Obtén un 70% de descuento hoy.</p>
+                                                        <a class="text-primary text-sm font-bold mt-1 hover:underline" href="#">Instalar ahora
+                                                            →</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="flex flex-col gap-1 pr-8">
-                                                <p class="text-[#111418] dark:text-white text-base font-bold leading-tight">
-                                                    Asegura tus descargas con FastVPN</p>
-                                                <p class="text-[#60758a] dark:text-gray-400 text-sm">Protege tu privacidad mientras
-                                                    navegas. Obtén un 70% de descuento hoy.</p>
-                                                <a class="text-primary text-sm font-bold mt-1 hover:underline" href="#">Instalar ahora
-                                                    →</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+                                        </div> -->
 
                     <div class="mt-4 flex flex-col items-center gap-6">
                         <div
@@ -279,9 +279,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div
                         class="flex flex-col gap-2 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
-                        <div
-                            class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 mb-2">
-                            <span class="material-symbols-outlined">bolt</span>
+                        <div class="w-full flex flex-row items-center">
+                            <div
+                                class="mr-2 w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+                                <span class="material-symbols-outlined">bolt</span>
+                            </div>
                             <h3 class="font-bold text-base">Más Rápido que el Rayo</h3>
                         </div>
                         <p class="text-sm text-gray-500 dark:text-gray-400">Nuestros servidores dedicados garantizan que tus
@@ -290,9 +292,11 @@
                     </div>
                     <div
                         class="flex flex-col gap-2 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
-                        <div
-                            class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-2">
-                            <span class="material-symbols-outlined">water_drop</span>
+                        <div class="w-full flex flex-row items-center">
+                            <div
+                                class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                                <span class="material-symbols-outlined">water_drop</span>
+                            </div>
                             <h3 class="font-bold text-base">Sin Marcas de Agua</h3>
                         </div>
                         <p class="text-sm text-gray-500 dark:text-gray-400">Obtén la <strong>calidad del video original de
@@ -300,9 +304,11 @@
                     </div>
                     <div
                         class="flex flex-col gap-2 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
-                        <div
-                            class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-2">
-                            <span class="material-symbols-outlined">devices</span>
+                        <div class="w-full flex flex-row items-center">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                <span class="material-symbols-outlined">devices</span>
+                            </div>
                             <h3 class="font-bold text-base">Todos los Dispositivos</h3>
                         </div>
                         <p class="text-sm text-gray-500 dark:text-gray-400">Funciona perfectamente en <strong>iPhone,
