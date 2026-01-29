@@ -73,18 +73,24 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ0HTPNNHB"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-CQ0HTPNNHB');
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4891293081300502"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
+
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
 </head>
 
 <body
     class="bg-white dark:bg-background-dark text-[#111418] dark:text-text-main font-display transition-colors duration-200 antialiased selection:bg-primary/30 selection:text-white">
+    <amp-auto-ads type="adsense" data-ad-client="ca-pub-4891293081300502">
+    </amp-auto-ads>
+
     <div
         class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden font-display">
         <header
@@ -159,7 +165,8 @@
                     </div>
                     <div class="text-center md:text-left">
                         <p class="text-[#9ca3af] dark:text-gray-600 text-xs">© {{ date('Y') }}
-                            {{ config('services.vars.appName') }}. No estamos afiliados a TikTok.</p>
+                            {{ config('services.vars.appName') }}. No estamos afiliados a TikTok.
+                        </p>
                     </div>
                 </div>
             </footer>
