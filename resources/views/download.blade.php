@@ -1,28 +1,28 @@
 @extends('layouts.app')
 
-@section('title', 'Descarga tu Video de TikTok - MP4 Sin Marca de Agua')
+@section('title', __('download.meta_title'))
 
-@section('meta-description', 'Tu video de TikTok está listo para descargar. Obtén MP4 de alta calidad sin marca de agua en 1 clic. ¡Descarga ahora gratis!')
+@section('meta-description', __('download.meta_description'))
 
-@section('meta-keywords', 'descargar tiktok, video descargado, tiktok mp4, sin marca de agua, descarga gratis')
+@section('meta-keywords', __('download.meta_keywords'))
 
-@section('og-type', 'article')
+@section('og-type', __('download.og_type'))
 
-@section('og-title', 'Descarga Completada - Tu Video de TikTok en MP4')
+@section('og-title', __('download.og_title'))
 
-@section('og-description', 'Tu video de TikTok ha sido procesado exitosamente. Descargalo en alta calidad sin marca de agua.')
+@section('og-description', __('download.og_description'))
 
-@section('og-image', url('/assets/img/og-image.png'))
+@section('og-image', url(__('download.og_image')))
 
-@section('twitter-title', 'Descarga tu Video TikTok | Sin Marca de Agua')
+@section('twitter-title', __('download.twitter_title'))
 
-@section('twitter-description', 'Tu video de TikTok está listo. Descargalo ahora en MP4 HD gratis.')
+@section('twitter-description', __('download.twitter_description'))
 
-@section('twitter-image', url('/assets/img/twitter-image.png'))
+@section('twitter-image', url(__('download.twitter_image')))
 
 @section('content')
     @php
-        if (!function_exists('formatViews')) {
+        if (!function_exists('formatViews')) { 
             function formatViews($number)
             {
                 if ($number >= 1000000000) {
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[16px]">visibility</span>
-                                        <span>{{formatViews($info['stats']['views'] ?? 0)}} vistas</span>
+                                        <span>{{formatViews($info['stats']['views'] ?? 0)}} {{ __('download.views_text') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -134,10 +134,9 @@
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-green-500 text-3xl">check_circle</span>
                             <h1 class="text-[#111418] dark:text-white tracking-tight text-[32px] font-bold leading-tight">
-                                ¡Tu Video de TikTok está Listo para Descargar!</h1>
+                                {{ __('download.title_ready') }}</h1>
                         </div>
-                        <p class="text-[#60758a] dark:text-gray-400 text-base font-normal leading-normal">Elige el formato
-                            que prefieres y comienza la descarga en <strong>alta calidad sin marca de agua</strong>.</p>
+                        <p class="text-[#60758a] dark:text-gray-400 text-base font-normal leading-normal">{!! __('download.subtitle') !!}</p>
                     </div>
 
                     <div class="flex flex-col gap-4">
@@ -157,11 +156,10 @@
 
                                     <div class="flex flex-col items-start overflow-hidden">
                                         <span class="text-sm md:text-lg font-bold uppercase tracking-wide whitespace-nowrap">
-                                            <span class="md:hidden">Descargar HD</span> <span class="hidden md:inline">⬇
-                                                Descargar Video HD</span> </span>
+                                            <span class="md:hidden">{{ __('download.btn_download_hd') }}</span> <span class="hidden md:inline">{{ __('download.btn_download_hd_full') }}</span> </span>
                                         <span
                                             class="hidden sm:block text-[10px] md:text-sm text-blue-100 opacity-90 font-medium truncate">
-                                            Mejor calidad • Sin marca de agua • MP4
+                                            {{ __('download.btn_quality_hd') }}
                                         </span>
                                     </div>
                                 </div>
@@ -185,12 +183,12 @@
                                     </div>
                                     <div class="flex flex-col items-start overflow-hidden">
                                         <span class="text-sm md:text-base font-bold whitespace-nowrap">
-                                            <span class="md:hidden">Descargar SD</span>
-                                            <span class="hidden md:inline">⬇ Descargar Video SD</span>
+                                            <span class="md:hidden">{{ __('download.btn_download_sd') }}</span>
+                                            <span class="hidden md:inline">{{ __('download.btn_download_sd_full') }}</span>
                                         </span>
                                         <span
                                             class="hidden sm:block text-[10px] md:text-xs text-gray-500 dark:text-gray-400 truncate">
-                                            Archivo menor • MP4 • Sin marca
+                                            {{ __('download.btn_quality_sd') }}
                                         </span>
                                     </div>
                                 </div>
@@ -212,12 +210,12 @@
                                     </div>
                                     <div class="flex flex-col items-start overflow-hidden">
                                         <span class="text-sm md:text-base font-bold whitespace-nowrap">
-                                            <span class="md:hidden">Audio MP3</span>
-                                            <span class="hidden md:inline">♫ Descargar Solo Audio MP3</span>
+                                            <span class="md:hidden">{{ __('download.btn_download_mp3') }}</span>
+                                            <span class="hidden md:inline">{{ __('download.btn_download_mp3_full') }}</span>
                                         </span>
                                         <span
                                             class="hidden sm:block text-[10px] md:text-xs text-gray-500 dark:text-gray-400 truncate">
-                                            Solo audio • TikTok
+                                            {{ __('download.btn_quality_mp3') }}
                                         </span>
                                     </div>
                                 </div>
@@ -256,26 +254,21 @@
                             class="w-full bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800/30 rounded-lg p-4 flex gap-3 items-start">
                             <span class="material-symbols-outlined text-blue-400 text-xl shrink-0 mt-0.5">info</span>
                             <p class="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
-                                <strong>Descargo de responsabilidad:</strong> {{ config('services.vars.appName') }} no está
-                                afiliado a TikTok. No alojamos ningún video en nuestros servidores. Todos los derechos
-                                pertenecen a sus respectivos propietarios. Por favor, respete las leyes de derechos de autor
-                                y los términos de uso del creador.
+                                <strong>{{ __('download.disclaimer_title') }}</strong> {{ __('download.disclaimer_text', ['appName' => config('services.vars.appName')]) }}
                             </p>
                         </div>
 
                         <a class="flex items-center gap-2 text-[#60758a] dark:text-gray-400 hover:text-primary dark:hover:text-primary font-bold text-sm transition-colors py-2"
                             href="{{ route('home') }}">
                             <span class="material-symbols-outlined text-lg">arrow_back</span>
-                            Descargar otro video
+                            {{ __('download.btn_back') }}
                         </a>
                     </div>
                 </div>
             </div>
 
             <div class="mt-12 border-t border-gray-100 dark:border-gray-800 pt-10">
-                <h2 class="text-2xl font-bold mb-6 text-[#111418] dark:text-white">¿Por qué Usar
-                    {{ config('services.vars.appName') }} para Descargar de TikTok?
-                </h2>
+                <h2 class="text-2xl font-bold mb-6 text-[#111418] dark:text-white">{{ __('download.why_use_title', ['appName' => config('services.vars.appName')]) }}</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div
                         class="flex flex-col gap-2 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
@@ -284,11 +277,9 @@
                                 class="mr-2 w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
                                 <span class="material-symbols-outlined">bolt</span>
                             </div>
-                            <h3 class="font-bold text-base">Más Rápido que el Rayo</h3>
+                            <h3 class="font-bold text-base">{{ __('download.feature_1_title') }}</h3>
                         </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Nuestros servidores dedicados garantizan que tus
-                            <strong>descargas de TikTok comiencen al instante</strong> sin colas ni esperas.
-                        </p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">{!! __('download.feature_1_desc') !!}</p>
                     </div>
                     <div
                         class="flex flex-col gap-2 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
@@ -297,10 +288,9 @@
                                 class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
                                 <span class="material-symbols-outlined">water_drop</span>
                             </div>
-                            <h3 class="font-bold text-base">Sin Marcas de Agua</h3>
+                            <h3 class="font-bold text-base">{{ __('download.feature_2_title') }}</h3>
                         </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Obtén la <strong>calidad del video original de
-                                forma limpia</strong> sin la superposición del logo saltarín de TikTok.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">{!! __('download.feature_2_desc') !!}</p>
                     </div>
                     <div
                         class="flex flex-col gap-2 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
@@ -309,10 +299,9 @@
                                 class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
                                 <span class="material-symbols-outlined">devices</span>
                             </div>
-                            <h3 class="font-bold text-base">Todos los Dispositivos</h3>
+                            <h3 class="font-bold text-base">{{ __('download.feature_3_title') }}</h3>
                         </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Funciona perfectamente en <strong>iPhone,
-                                Android, MacOS, Windows y Linux</strong> sin necesidad de instalar nada.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">{!! __('download.feature_3_desc') !!}</p>
                     </div>
                 </div>
             </div>

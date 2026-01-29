@@ -49,7 +49,7 @@ class DownloadController extends Controller
         return json_decode($payload)->id;
     }
 
-    public function index(Request $request, $id)
+    public function index(Request $request, $lang, $id)
     {
         $response = Http::get($this->flaskBase . '/info' . '/' . $id);
 
@@ -98,7 +98,7 @@ class DownloadController extends Controller
         return $url;
     }
 
-    public function downloadHD(Request $request, $id)
+    public function downloadHD(Request $request, $lang, $id)
     {
 
         $response = Http::get($this->flaskBase . '/download/hd' . '/' . $id);
@@ -114,7 +114,7 @@ class DownloadController extends Controller
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
     }
 
-    public function downloadSD(Request $request, $id)
+    public function downloadSD(Request $request, $lang, $id)
     {
 
         $response = Http::get($this->flaskBase . '/download/sd' . '/' . $id);
@@ -131,7 +131,7 @@ class DownloadController extends Controller
     }
 
 
-    public function downloadMP3(Request $request, $id)
+    public function downloadMP3(Request $request, $lang, $id)
     {
         $response = Http::get($this->flaskBase . '/download/mp3' . '/' . $id);
 
@@ -146,7 +146,7 @@ class DownloadController extends Controller
             ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
     }
 
-    public function thumbnail(Request $request, $id)
+    public function thumbnail(Request $request, $lang, $id)
     {
 
         $response = Http::get($this->flaskBase . '/assets' . '/' . $id . '/'.'thumbnail.jpg');

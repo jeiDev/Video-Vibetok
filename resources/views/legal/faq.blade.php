@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Preguntas Frecuentes - VideoVibeTok')
+@section('title', __('faq.meta_title'))
 
 @section('meta_description')
-Encuentra respuestas rápidas sobre cómo descargar videos de TikTok sin marcas de agua, problemas comunes y soporte técnico. Explora categorías y usa el buscador para resolver tu consulta en segundos.
+{{ __('faq.meta_description') }}
 @endsection
 
-@section('meta_keywords', 'preguntas frecuentes, faq, descargar tiktok, soporte tiktok, VideoVibeTok, cómo descargar tiktok')
+@section('meta_keywords', __('faq.meta_keywords'))
 
-@section('og_title', 'Preguntas Frecuentes - VideoVibeTok')
-@section('og_description', 'Respuestas a las dudas más comunes sobre descargar videos de TikTok sin marca de agua, privacidad y soporte técnico.')
+@section('og_title', __('faq.og_title'))
+@section('og_description', __('faq.og_description'))
 @section('og_image', asset('assets/img/og/faq-1200x630.png'))
 @section('twitter_card', 'summary_large_image')
 
@@ -27,9 +27,9 @@ Encuentra respuestas rápidas sobre cómo descargar videos de TikTok sin marcas 
                 <div class="mb-8">
                     <h1
                         class="text-slate-900 dark:text-white text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-4">
-                        Preguntas Frecuentes sobre Descargar TikTok — <span class="text-primary">{{ config('services.vars.appName') }}</span>
+                        {{ __('faq.page_title') }}<span class="text-primary">{{ config('services.vars.appName') }}</span>
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 text-lg font-normal leading-relaxed max-w-2xl">Resuelve dudas sobre cómo descargar TikToks sin marca de agua, formatos (MP4/MP3), compatibilidad con dispositivos y políticas de uso. Usa el buscador o explora las categorías para encontrar respuestas rápidas.</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-lg font-normal leading-relaxed max-w-2xl">{{ __('faq.page_intro') }}</p>
                 </div>
                 
                 <div class="mb-8">
@@ -41,7 +41,7 @@ Encuentra respuestas rápidas sobre cómo descargar videos de TikTok sin marcas 
                             </div>
                             <input
                                 class="flex w-full min-w-0 flex-1 resize-none bg-transparent border-none text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-0 h-full px-4 text-base font-normal leading-normal"
-                                placeholder="Busca preguntas, temas o palabras clave..." />
+                                placeholder="{{ __('faq.search_placeholder') }}" />
                         </div>
                     </label>
                 </div>
@@ -99,14 +99,14 @@ Encuentra respuestas rápidas sobre cómo descargar videos de TikTok sin marcas 
                         <div class="size-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
                             <span class="material-symbols-outlined text-primary text-3xl">support_agent</span>
                         </div>
-                        <h3 class="text-slate-900 dark:text-white text-xl font-bold mb-2">¿Aún tienes dudas?</h3>
+                        <h3 class="text-slate-900 dark:text-white text-xl font-bold mb-2">{{ __('faq.support_title') }}</h3>
                         <p class="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
-                            Si no pudiste encontrar la respuesta a tu pregunta en nuestras preguntas frecuentes, por favor no dudes en contactarnos.
+                            {{ __('faq.support_text') }}
                         </p>
                         <button
                             class="w-full h-12 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-                            <span>📩 Contactar con Soporte</span>
-                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            <span>{{ __('faq.support_button') }}</span>
+                            <span class="material-symbols-outlined text-lg">{{ __('faq.support_button_icon') }}</span>
                         </button>
                     </div>
                     
@@ -121,8 +121,8 @@ Encuentra respuestas rápidas sobre cómo descargar videos de TikTok sin marcas 
                                 <span class="material-symbols-outlined text-xl">description</span>
                             </div>
                             <div class="flex flex-col">
-                                <span class="text-slate-900 dark:text-white font-semibold text-sm">Términos del Servicio</span>
-                                <span class="text-slate-400 text-xs">Lee nuestras políticas de uso</span>
+                                <span class="text-slate-900 dark:text-white font-semibold text-sm">{{ __('faq.sidebar_terms_title') }}</span>
+                                <span class="text-slate-400 text-xs">{{ __('faq.sidebar_terms_desc') }}</span>
                             </div>
                         </a>
                         <a 
@@ -134,8 +134,8 @@ Encuentra respuestas rápidas sobre cómo descargar videos de TikTok sin marcas 
                                 <span class="material-symbols-outlined text-xl">security</span>
                             </div>
                             <div class="flex flex-col">
-                                <span class="text-slate-900 dark:text-white font-semibold text-sm">Política de Privacidad</span>
-                                <span class="text-slate-400 text-xs">Cómo manejamos tus datos</span>
+                                <span class="text-slate-900 dark:text-white font-semibold text-sm">{{ __('faq.sidebar_privacy_title') }}</span>
+                                <span class="text-slate-400 text-xs">{{ __('faq.sidebar_privacy_desc') }}</span>
                             </div>
                         </a>
                     </div>

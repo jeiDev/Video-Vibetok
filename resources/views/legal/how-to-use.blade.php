@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Cómo utilizar - Guía para Descargar TikToks | VideoVibeTok')
+@section('title', __('howtouse.meta_title'))
 
 @section('meta_description')
-Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua con VideoVibeTok. Guía rápida, consejos de calidad y compatibilidad con todos los dispositivos.
+{{ __('howtouse.meta_description') }}
 @endsection
 
-@section('meta_keywords', 'cómo descargar tiktok, descargar tiktoks sin marca de agua, guía descargar tiktok, VideoVibeTok, descargar mp4')
+@section('meta_keywords', __('howtouse.meta_keywords'))
 
-@section('og_title', 'Cómo descargar TikToks sin marca de agua — Guía VideoVibeTok')
-@section('og_description', 'Sigue nuestra guía paso a paso para guardar videos TikTok en MP4 sin marcas de agua. Compatible con iPhone, Android y PC. Rápido y gratuito.')
+@section('og_title', __('howtouse.og_title'))
+@section('og_description', __('howtouse.og_description'))
 @section('og_image', asset('assets/img/og/howto-1200x630.png'))
 @section('twitter_card', 'summary_large_image')
 
@@ -17,13 +17,13 @@ Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua c
     <div class="flex-1 flex flex-col items-center py-10 px-4 md:px-10 lg:px-40 gap-12 w-full max-w-7xl mx-auto">
         <section class="flex flex-col items-center text-center max-w-[800px] gap-6 animate-fade-in-up">
             <span
-                class="bg-blue-100 dark:bg-blue-900/30 text-primary px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase">Guía del usuario</span>
+                class="bg-blue-100 dark:bg-blue-900/30 text-primary px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase">{{ __('howtouse.guide_label') }}</span>
             <h1
                 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-[-0.033em] text-slate-900 dark:text-white">
-                Cómo descargar TikToks <span class="text-primary">sin marcas de agua</span> — <span class="text-primary">{{ config('services.vars.appName') }}</span>
+                {{ __('howtouse.main_title_part1') }}<span class="text-primary">{{ __('howtouse.main_title_highlight1') }}</span>{{ __('howtouse.main_title_separator') }}<span class="text-primary">{{ config('services.vars.appName') }}</span>
             </h1>
             <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-normal leading-relaxed max-w-[640px]">
-                Rápido, gratuito y sencillo: esta guía paso a paso te muestra cómo guardar TikToks en formato MP4 sin marcas de agua, conservar la máxima calidad y usar la herramienta en cualquier dispositivo.
+                {{ __('howtouse.main_intro') }}
             </p>
         </section>
         
@@ -50,10 +50,9 @@ Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua c
                         1</div>
                 </div>
                 <div class="flex flex-col gap-2 px-4">
-                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">Copiar el enlace</h2>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">{{ __('howtouse.step1_title') }}</h2>
                     <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
-                        Abre la aplicación TikTok, busca el video que quieres guardar. Toca el botón "Compartir" y selecciona
-                        <strong>"Copiar enlace"</strong>.
+                        {{ __('howtouse.step1_description') }}
                     </p>
                 </div>
             </div>
@@ -69,10 +68,9 @@ Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua c
                         2</div>
                 </div>
                 <div class="flex flex-col gap-2 px-4">
-                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">Pegar la URL</h2>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">{{ __('howtouse.step2_title') }}</h2>
                     <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
-                        Vuelve a SnapTik Clone, pega el enlace en el campo de texto en la parte superior de la página y pulsa el
-                        <strong>"Botón"</strong> de descarga.
+                        {{ __('howtouse.step2_description') }}
                     </p>
                 </div>
             </div>
@@ -88,9 +86,9 @@ Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua c
                         3</div>
                 </div>
                 <div class="flex flex-col gap-2 px-4">
-                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">Guardar video</h2>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">{{ __('howtouse.step3_title') }}</h2>
                     <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
-                        Espera unos segundos para que nuestros servidores procesen el video. Luego, elige tu formato preferido para guardarlo al instante.
+                        {{ __('howtouse.step3_description') }}
                     </p>
                 </div>
             </div>
@@ -106,13 +104,13 @@ Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua c
         <section class="w-full max-w-4xl flex flex-col gap-12 text-left">
             <div
                 class="bg-white dark:bg-[#1A2633] p-8 md:p-12 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6">¿Por qué descargar TikToks sin marcas de agua?</h2>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6">{{ __('howtouse.why_title') }}</h2>
                 <div class="space-y-4 text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
                     <p>
-                        TikTok añade automáticamente una marca de agua que contiene el nombre de usuario del creador y el logo de TikTok a cada video descargado. Aunque esto ayuda con la atribución, puede ser molesto si quieres conservar una copia limpia de tu propio contenido, crear recopilaciones o compartir videos en otras plataformas que podrían penalizar el contenido reciclado con logos visibles.
+                        {{ __('howtouse.why_paragraph1') }}
                     </p>
                     <p>
-                        Nuestra herramienta elimina esta marca de agua accediendo al archivo de origen del video original, ofreciéndote un archivo MP4 limpio y de alta definición que se ve exactamente como en la aplicación, pero sin distracciones.
+                        {{ __('howtouse.why_paragraph2') }}
                     </p>
                 </div>
             </div>
@@ -121,20 +119,20 @@ Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua c
                     class="bg-white dark:bg-[#1A2633] p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="material-symbols-outlined text-primary">smartphone</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Funciona en todos los dispositivos</h3>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ __('howtouse.feature1_title') }}</h3>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                       Ya sea que estés usando un iPhone, Android, iPad, tableta o PC, nuestro descargador funciona directamente en tu navegador. No se requiere la instalación de ningún software.
+                       {{ __('howtouse.feature1_description') }}
                     </p>
                 </div>
                 <div
                     class="bg-white dark:bg-[#1A2633] p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="material-symbols-outlined text-primary">hd</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Soporte de calidad HD</h3>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ __('howtouse.feature2_title') }}</h3>
                     </div>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                       No comprimimos tus videos. Si el video original se subió en HD, proporcionamos el enlace de descarga para la máxima calidad disponible.
+                       {{ __('howtouse.feature2_description') }}
                     </p>
                 </div>
             </div>
@@ -147,22 +145,22 @@ Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua c
                     <span class="material-symbols-outlined">gavel</span>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Política de Uso Responsable</h3>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">{{ __('howtouse.policy_title') }}</h3>
                     <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Respeta los derechos de propiedad intelectual. Solo debes descargar videos que te pertenezcan, o videos que cumplan con la licencia "Creative Commons". No fomentamos la descarga de material con derechos de autor sin el permiso del propietario.
+                        {{ __('howtouse.policy_description') }}
                     </p>
                 </div>
             </div>
         </section>
         
         <section class="w-full py-10 flex flex-col items-center gap-6">
-            <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center">¿Listo para empezar?</h2>
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white text-center">{{ __('howtouse.cta_title') }}</h2>
             <button
                 class="bg-primary hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all flex items-center gap-2 group">
                 <a 
                     href="{{ route('home') }}"
                 >
-                        <span>Ir al descargador</span>
+                        <span>{{ __('howtouse.cta_button') }}</span>
                 </a>
                 
                 <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>

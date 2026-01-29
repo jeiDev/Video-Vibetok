@@ -1,5 +1,7 @@
 <?php
 
+use GuzzleHttp\Middleware;
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application

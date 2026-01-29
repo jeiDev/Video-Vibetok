@@ -1,35 +1,34 @@
 @extends('layouts.app')
 
-@section('title', 'Descargador de Videos TikTok Gratis - MP4 Sin Marca de Agua')
+@section('title', __('home.meta_title'))
 
-@section('meta-description', 'Descarga videos de TikTok gratis en MP4 de alta calidad sin marca de agua. ✓ 100% seguro, sin registro. Descargas rápidas y ilimitadas. ¡Pruébalo ahora!')
+@section('meta-description', __('home.meta_description'))
 
-@section('meta-keywords', 'descargar videos tiktok, descarga tiktok gratis, tiktok downloader, videos sin marca agua, descargar mp4, tiktok video downloader, descarga rápida, tiktok hd')
+@section('meta-keywords', __('home.meta_keywords'))
 
-@section('og-type', 'website')
+@section('og-type', __('home.og_type'))
 
-@section('og-title', 'Descargador TikTok Gratis - Descargas en MP4 Sin Marca de Agua')
+@section('og-title', __('home.og_title'))
 
-@section('og-description', 'Descarga cualquier video de TikTok gratis en alta calidad sin marca de agua. Herramienta online 100% segura y sin registro requerido.')
+@section('og-description', __('home.og_description'))
 
-@section('og-image', url('/assets/img/og-image.png'))
+@section('og-image', url(__('home.og_image')))
 
-@section('twitter-title', 'Descargador de TikTok Gratis | Sin Marca de Agua')
+@section('twitter-title', __('home.twitter_title'))
 
-@section('twitter-description', 'Descarga videos TikTok en MP4 alta calidad, gratis, sin marca de agua y sin registro.')
+@section('twitter-description', __('home.twitter_description'))
 
-@section('twitter-image', url('/assets/img/twitter-image.png'))
-
+@section('twitter-image', url(__('home.twitter_image')))
+ 
 @section('content')
     <div class="flex flex-1 justify-center py-10 px-4 bg-gradient-to-b from-white to-[#f0f9ff]" id="container-download">
         <div class="layout-content-container flex flex-col max-w-[960px] flex-1 items-center text-center gap-8">
-            <div class="flex flex-col gap-4 max-w-[720px]">
+            <div class="flex flex-col gap-4 max-w-[780px]">
                 <h1 class="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
-                    Descarga Videos de <span class="text-primary">TikTok Gratis</span> sin Marca de Agua
+                    {{ __('home.hero_title') }} <span class="text-primary">{{ __('home.hero_title_highlight') }}</span>
                 </h1>
                 <p class="text-[#60758a] text-lg font-normal leading-normal md:text-xl">
-                    Obtén MP4 de <strong>alta calidad</strong> en segundos. Herramienta <strong>100% gratuita</strong>,
-                    segura y sin necesidad de registro.
+                    {!! __('home.hero_subtitle') !!}
                 </p>
             </div>
 
@@ -42,11 +41,11 @@
                         </div>
                         <input id="tiktok-url"
                             class="flex w-full min-w-0 flex-1 resize-none bg-transparent border-none text-[#111418] focus:outline-none focus:ring-0 h-14 placeholder:text-[#9ca3af] px-4 text-base font-normal leading-normal"
-                            placeholder="Pega el enlace de TikTok aquí..." value="" />
+                            placeholder="{{ __('home.hero_placeholder') }}" value="" />
 
                         <button
                             class="btn-download flex min-w-[60px] md:min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-2 md:px-6 bg-[#22c55e] hover:bg-[#16a34a] text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md hover:shadow-lg transition-all transform active:scale-95">
-                            <span class="hidden md:inline truncate mr-2">Descargar</span>
+                            <span class="hidden md:inline truncate mr-2">{{ __('home.hero_button') }}</span>
                             <span class="material-symbols-outlined text-[20px]">download</span>
                         </button>
                     </div>
@@ -60,29 +59,29 @@
                         </div>
                         <div class="flex flex-col">
                             <p class="text-red-800 text-sm font-semibold" id="status-text"></p>
-                            <p class="text-red-700/80 text-xs">Por favor, comprueba la URL e inténtalo de nuevo.</p>
+                            <p class="text-red-700/80 text-xs">{{ __('home.hero_error_message') }}</p>
                         </div>
                     </div>
                     <button
                         class="btn-download flex items-center justify-center gap-2 px-4 py-2 bg-white border border-red-200 text-red-700 hover:bg-red-50 text-sm font-bold rounded-full transition-colors shadow-sm whitespace-nowrap">
                         <span class="material-symbols-outlined text-lg">refresh</span>
-                        <span>Intentar de nuevo</span>
+                        <span>{{ __('home.hero_button_retry') }}</span>
                     </button>
                 </div>
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6 text-sm text-[#60758a]">
                     <div class="flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-[16px] text-[#22c55e]">check_circle</span>
-                        <span>100% Seguro</span>
+                        <span>{{ __('home.hero_badge_safe') }}</span>
                     </div>
                     <div class="hidden sm:flex">•</div>
                     <div class="flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-[16px] text-[#22c55e]">check_circle</span>
-                        <span>100% Gratuito</span>
+                        <span>{{ __('home.hero_badge_free') }}</span>
                     </div>
                     <div class="hidden sm:flex">•</div>
                     <div class="flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-[16px] text-[#22c55e]">check_circle</span>
-                        <span>Sin Registro</span>
+                        <span>{{ __('home.hero_badge_no_register') }}</span>
                     </div>
                 </div>
             </div>
@@ -92,9 +91,9 @@
     <div class="flex flex-1 justify-center py-20 px-4 bg-gradient-to-b from-white to-[#f0f9ff] hidden"
         id="container-loading">
         <div class="layout-content-container flex flex-col max-w-[960px] flex-1 items-center text-center gap-12">
-            <div class="flex flex-col gap-4 max-w-[720px]">
+            <div class="flex flex-col gap-4 max-w-[780px]">
                 <h1 class="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl">
-                    Obteniendo tu video
+                    {{ __('home.loading_title') }}
                 </h1>
             </div>
             <div class="flex flex-col items-center justify-center gap-8 py-10">
@@ -105,8 +104,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <p class="text-[#111418] text-2xl font-bold tracking-tight">Procesando tu video...</p>
-                    <p class="text-[#60758a] text-lg">Por favor espera un momento mientras eliminamos la marca de agua.</p>
+                    <p class="text-[#111418] text-2xl font-bold tracking-tight">{{ __('home.loading_processing') }}</p>
+                    <p class="text-[#60758a] text-lg">{{ __('home.loading_subtitle') }}</p>
                 </div>
             </div>
         </div>
@@ -125,10 +124,8 @@
         <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
             <div class="flex flex-col gap-10">
                 <div class="text-center">
-                    <h2 class="text-[#111418] text-3xl font-bold leading-tight tracking-tight mb-2">Cómo Descargar Videos de
-                        TikTok</h2>
-                    <p class="text-[#60758a] text-base">Descarga tu video favorito de <strong>TikTok en 3 simples
-                            pasos</strong></p>
+                    <h2 class="text-[#111418] text-3xl font-bold leading-tight tracking-tight mb-2">{{ __('home.steps_title') }}</h2>
+                    <p class="text-[#60758a] text-base">{!! __('home.steps_subtitle') !!}</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -139,9 +136,8 @@
                             <span class="material-symbols-outlined text-[28px]">content_copy</span>
                         </div>
                         <div class="flex flex-col gap-2">
-                            <h3 class="text-[#111418] text-lg font-bold">1. Copiar Enlace TikTok</h3>
-                            <p class="text-[#60758a] text-sm leading-relaxed">Encuentra el video de <strong>TikTok</strong>
-                                que deseas guardar y copia su URL desde el menú de compartir.</p>
+                            <h3 class="text-[#111418] text-lg font-bold">{{ __('home.step_1_title') }}</h3>
+                            <p class="text-[#60758a] text-sm leading-relaxed">{!! __('home.step_1_desc') !!}</p>
                         </div>
                     </div>
 
@@ -152,9 +148,8 @@
                             <span class="material-symbols-outlined text-[28px]">input</span>
                         </div>
                         <div class="flex flex-col gap-2">
-                            <h3 class="text-[#111418] text-lg font-bold">2. Pega el Enlace Aquí</h3>
-                            <p class="text-[#60758a] text-sm leading-relaxed">Pega el enlace del video en el campo de
-                                entrada que encontrarás en la parte superior de esta página.</p>
+                            <h3 class="text-[#111418] text-lg font-bold">{{ __('home.step_2_title') }}</h3>
+                            <p class="text-[#60758a] text-sm leading-relaxed">{!! __('home.step_2_desc') !!}</p>
                         </div>
                     </div>
 
@@ -165,9 +160,8 @@
                             <span class="material-symbols-outlined text-[28px]">download_for_offline</span>
                         </div>
                         <div class="flex flex-col gap-2">
-                            <h3 class="text-[#111418] text-lg font-bold">3. Descarga tu Video</h3>
-                            <p class="text-[#60758a] text-sm leading-relaxed">Haz clic en el botón de descarga y obtén tu
-                                video en <strong>MP4 de alta calidad sin marca de agua</strong>.</p>
+                            <h3 class="text-[#111418] text-lg font-bold">{{ __('home.step_3_title') }}</h3>
+                            <p class="text-[#60758a] text-sm leading-relaxed">{!! __('home.step_3_desc') !!}</p>
                         </div>
                     </div>
                 </div>
@@ -178,7 +172,7 @@
     <div class="flex justify-center bg-[#f9fafb] py-16 px-4">
         <div class="layout-content-container flex flex-col lg:flex-row gap-8 max-w-[960px] flex-1">
             <div class="flex-1 flex flex-col gap-8">
-                <h2 class="text-[#111418] text-2xl font-bold leading-tight">¿Por qué Elegirnos para Descargar TikTok?</h2>
+                <h2 class="text-[#111418] text-2xl font-bold leading-tight">{{ __('home.why_us_title') }}</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div
                         class="flex gap-4 p-4 rounded-xl bg-white border border-[#e5e7eb] shadow-sm hover:shadow-md hover:border-primary/30 transition-all">
@@ -186,9 +180,8 @@
                             <span class="material-symbols-outlined text-[24px]">water_drop</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">Sin Marca de Agua</h3>
-                            <p class="text-[#60758a] text-sm">Obtén videos limpios sin el logo de TikTok ni superposiciones.
-                                Descarga MP4 original de alta calidad.</p>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">{{ __('home.why_us_no_watermark_title') }}</h3>
+                            <p class="text-[#60758a] text-sm">{{ __('home.why_us_no_watermark_desc') }}</p>
                         </div>
                     </div>
                     <div
@@ -197,9 +190,8 @@
                             <span class="material-symbols-outlined text-[24px]">hd</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">Calidad HD/4K</h3>
-                            <p class="text-[#60758a] text-sm">Preservamos la calidad original del video de TikTok. Descarga
-                                en la máxima resolución disponible.</p>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">{{ __('home.why_us_quality_title') }}</h3>
+                            <p class="text-[#60758a] text-sm">{{ __('home.why_us_quality_desc') }}</p>
                         </div>
                     </div>
                     <div
@@ -208,9 +200,8 @@
                             <span class="material-symbols-outlined text-[24px]">block</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">Sin Registro</h3>
-                            <p class="text-[#60758a] text-sm">Completamente gratis para usar sin necesidad de crear cuenta,
-                                login o compartir datos personales.</p>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">{{ __('home.why_us_no_registration_title') }}</h3>
+                            <p class="text-[#60758a] text-sm">{{ __('home.why_us_no_registration_desc') }}</p>
                         </div>
                     </div>
                     <div
@@ -219,9 +210,8 @@
                             <span class="material-symbols-outlined text-[24px]">all_inclusive</span>
                         </div>
                         <div>
-                            <h3 class="text-[#111418] font-bold text-base mb-1">Descargas Ilimitadas</h3>
-                            <p class="text-[#60758a] text-sm">Descarga todos los videos de TikTok que quieras, sin límites
-                                de cantidad ni restricciones de tiempo.</p>
+                            <h3 class="text-[#111418] font-bold text-base mb-1">{{ __('home.why_us_unlimited_title') }}</h3>
+                            <p class="text-[#60758a] text-sm">{{ __('home.why_us_unlimited_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -262,7 +252,7 @@
 
                 btnDownload.addEventListener('click', async () => {
                     const videoUrl = input.value.trim();
-                    if (!videoUrl) return alert("Pega una URL válida");
+                    if (!videoUrl) return alert("{{ __('home.error_invalid_url') }}");
 
                     containerMessage.classList.add("hidden")
                     statusText.innerText = ''
@@ -290,7 +280,7 @@
                         const taskId = data.task_id;
 
                         if (window.Echo) {
-                            statusText.innerText = "Video en cola. Esperando respuesta del servidor...";
+                            statusText.innerText = "{{ __('home.error_queue') }}";
 
                             window.Echo.channel(`download.${taskId}`)
                                 .listen('.status.updated', (e) => {
@@ -300,7 +290,7 @@
                                         containerLoading.classList.add("hidden")
                                         containerDownload.classList.remove("hidden")
                                         containerMessage.classList.remove("hidden")
-                                        statusText.innerText = "Error al procesar el video.";
+                                        statusText.innerText = "{{ __('home.error_processing') }}";
                                     }
                                 });
                         }
