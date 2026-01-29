@@ -282,8 +282,8 @@
                         <div
                             class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 mb-2">
                             <span class="material-symbols-outlined">bolt</span>
+                            <h3 class="font-bold text-base">Más Rápido que el Rayo</h3>
                         </div>
-                        <h3 class="font-bold text-base">⚡ Más Rápido que el Rayo</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400">Nuestros servidores dedicados garantizan que tus
                             <strong>descargas de TikTok comiencen al instante</strong> sin colas ni esperas.
                         </p>
@@ -293,8 +293,8 @@
                         <div
                             class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-2">
                             <span class="material-symbols-outlined">water_drop</span>
+                            <h3 class="font-bold text-base">Sin Marcas de Agua</h3>
                         </div>
-                        <h3 class="font-bold text-base">💧 Sin Marcas de Agua</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400">Obtén la <strong>calidad del video original de
                                 forma limpia</strong> sin la superposición del logo saltarín de TikTok.</p>
                     </div>
@@ -303,8 +303,8 @@
                         <div
                             class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-2">
                             <span class="material-symbols-outlined">devices</span>
+                            <h3 class="font-bold text-base">Todos los Dispositivos</h3>
                         </div>
-                        <h3 class="font-bold text-base">🖥️ Todos los Dispositivos</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400">Funciona perfectamente en <strong>iPhone,
                                 Android, MacOS, Windows y Linux</strong> sin necesidad de instalar nada.</p>
                     </div>
