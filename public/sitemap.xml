@@ -1,52 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- HOME PAGE -->
   <url>
-    <loc>https://videovibetok.com/</loc>
-    <lastmod>2026-01-28</lastmod>
+    <loc>https://videovibetok.com/en/</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://videovibetok.com/en/"/>
   </url>
 
+  <!-- HOW TO USE PAGE -->
   <url>
-    <loc>https://videovibetok.com/how-use</loc>
-    <lastmod>2026-01-28</lastmod>
+    <loc>https://videovibetok.com/en/how-use</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/how-use"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/how-use"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/how-use"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/how-use"/>
+  </url>
+
+  <!-- FAQ PAGE -->
+  <url>
+    <loc>https://videovibetok.com/en/faq</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/faq"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/faq"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/faq"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/faq"/>
   </url>
 
+  <!-- CONTACT PAGE -->
   <url>
-    <loc>https://videovibetok.com/faq</loc>
-    <lastmod>2026-01-28</lastmod>
+    <loc>https://videovibetok.com/en/contact</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/contact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/contact"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/contact"/>
   </url>
 
+  <!-- DISCLAIMER PAGE -->
   <url>
-    <loc>https://videovibetok.com/contact</loc>
-    <lastmod>2026-01-28</lastmod>
-    <priority>0.6</priority>
+    <loc>https://videovibetok.com/en/disclaimer</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/disclaimer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/disclaimer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/disclaimer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/disclaimer"/>
   </url>
 
+  <!-- COOKIE POLICY PAGE -->
   <url>
-    <loc>https://videovibetok.com/disclaimer</loc>
-    <lastmod>2026-01-28</lastmod>
-    <priority>0.3</priority>
+    <loc>https://videovibetok.com/en/cookie-policity</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/cookie-policity"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/cookie-policity"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/cookie-policity"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/cookie-policity"/>
   </url>
 
+  <!-- TERMS & CONDITIONS PAGE -->
   <url>
-    <loc>https://videovibetok.com/cookie-policity</loc>
-    <lastmod>2026-01-28</lastmod>
-    <priority>0.3</priority>
+    <loc>https://videovibetok.com/en/terms-conditions</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/terms-conditions"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/terms-conditions"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/terms-conditions"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/terms-conditions"/>
   </url>
 
+  <!-- PRIVACY POLICY PAGE -->
   <url>
-    <loc>https://videovibetok.com/terms-conditions</loc>
-    <lastmod>2026-01-28</lastmod>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://videovibetok.com/privacy-policy</loc>
-    <lastmod>2026-01-28</lastmod>
-    <priority>0.3</priority>
+    <loc>https://videovibetok.com/en/privacy-policy</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://videovibetok.com/en/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://videovibetok.com/es/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://videovibetok.com/fr/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://videovibetok.com/pt/privacy-policy"/>
   </url>
 
 </urlset>

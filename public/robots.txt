@@ -1,3 +1,56 @@
+# VideoVibeTok - robots.txt
+# Last updated: January 29, 2026
+
+# Allow all bots
 User-agent: *
 Allow: /
+
+# Disallow private/admin paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /storage/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /tests/
+Disallow: /vendor/
+Disallow: /node_modules/
+
+# Disallow temporary files
+Disallow: /*.php$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Allow specific file extensions
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+# Crawl delay (optional - adjust based on server capacity)
+Crawl-delay: 1
+
+# Sitemaps
 Sitemap: https://videovibetok.com/sitemap.xml
+
+# Language versions - help search engines understand language targeting
+# English
+Sitemap: https://videovibetok.com/en/
+
+# Spanish
+Sitemap: https://videovibetok.com/es/
+
+# French
+Sitemap: https://videovibetok.com/fr/
+
+# Portuguese
+Sitemap: https://videovibetok.com/pt/
