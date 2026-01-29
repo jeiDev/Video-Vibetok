@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Política de privacidad')
+@section('title', 'Política de Privacidad - VideoVibeTok')
+
+@section('meta_description')
+Conozca cómo {{ config('services.vars.appName') }} recopila, utiliza y protege sus datos personales. Esta política cubre cookies, análisis, anunciantes de terceros, derechos RGPD y CCPA. Última actualización: 01 de enero de 2026.
+@endsection
+
+@section('meta_keywords', 'política de privacidad, privacidad datos, VideoVibeTok, cookies, GDPR, CCPA')
+
+@section('og_title', 'Política de Privacidad - VideoVibeTok')
+@section('og_description', 'Entiende cómo VideoVibeTok maneja tus datos: cookies, analítica, derechos RGPD/CCPA y contacto del DPO.')
+@section('og_image', asset('assets/img/og/privacy-1200x630.png'))
+@section('twitter_card', 'summary_large_image')
 
 @section('content')
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
@@ -66,11 +77,13 @@
                             </div>
                             <h1
                                 class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
-                                Política de Privacidad</h1>
+                                Política de Privacidad de <span class="text-primary">{{ config('services.vars.appName') }}</span>
+                            </h1>
                             <p class="text-[#60758a] dark:text-gray-400 text-lg font-normal leading-normal max-w-2xl">
-                                Estamos comprometidos a proteger su privacidad. Este documento describe cómo recopilamos,
-                                utilizamos y salvaguardamos sus datos al utilizar nuestro servicio de descarga de videos de
-                                TikTok.
+                                En {{ config('services.vars.appName') }} estamos comprometidos a proteger su privacidad.
+                                Esta política explica qué datos recopilamos, con qué fines (por ejemplo, rendimiento,
+                                seguridad y publicidad), cómo los protegemos y los derechos que puede ejercer bajo el
+                                RGPD/CCPA. Revisamos y actualizamos esta política regularmente; la fecha de vigencia aparece arriba.
                             </p>
                         </div>
 

@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'FAQ')
+@section('title', 'Preguntas Frecuentes - VideoVibeTok')
+
+@section('meta_description')
+Encuentra respuestas rápidas sobre cómo descargar videos de TikTok sin marcas de agua, problemas comunes y soporte técnico. Explora categorías y usa el buscador para resolver tu consulta en segundos.
+@endsection
+
+@section('meta_keywords', 'preguntas frecuentes, faq, descargar tiktok, soporte tiktok, VideoVibeTok, cómo descargar tiktok')
+
+@section('og_title', 'Preguntas Frecuentes - VideoVibeTok')
+@section('og_description', 'Respuestas a las dudas más comunes sobre descargar videos de TikTok sin marca de agua, privacidad y soporte técnico.')
+@section('og_image', asset('assets/img/og/faq-1200x630.png'))
+@section('twitter_card', 'summary_large_image')
 
 @section('content')
 
@@ -16,8 +27,9 @@
                 <div class="mb-8">
                     <h1
                         class="text-slate-900 dark:text-white text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-4">
-                        Preguntas frecuentes</h1>
-                    <p class="text-slate-500 dark:text-slate-400 text-lg font-normal leading-relaxed max-w-2xl">Encuentra respuestas rápidas a preguntas comunes sobre la descarga de videos de TikTok sin marcas de agua, precios y soporte técnico.</p>
+                        Preguntas Frecuentes sobre Descargar TikTok — <span class="text-primary">{{ config('services.vars.appName') }}</span>
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 text-lg font-normal leading-relaxed max-w-2xl">Resuelve dudas sobre cómo descargar TikToks sin marca de agua, formatos (MP4/MP3), compatibilidad con dispositivos y políticas de uso. Usa el buscador o explora las categorías para encontrar respuestas rápidas.</p>
                 </div>
                 
                 <div class="mb-8">
@@ -93,7 +105,7 @@
                         </p>
                         <button
                             class="w-full h-12 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-                            <span>Contacto con el soporte</span>
+                            <span>📩 Contactar con Soporte</span>
                             <span class="material-symbols-outlined text-lg">arrow_forward</span>
                         </button>
                     </div>

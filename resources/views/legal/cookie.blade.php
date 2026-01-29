@@ -1,15 +1,26 @@
 @extends('layouts.app')
 
-@section('title', 'Política de cookies')
+@section('title', 'Política de Cookies - VideoVibeTok')
+
+@section('meta_description')
+Conoce cómo {{ config('services.vars.appName') }} utiliza cookies y tecnologías de seguimiento: cookies esenciales, analíticas y de marketing. Aprende a gestionar tus preferencias y proteger tu privacidad. Última actualización: Enero 01, 2026.
+@endsection
+
+@section('meta_keywords', 'política de cookies, cookies, privacidad, VideoVibeTok, cookies marketing, cookies analytics')
+
+@section('og_title', 'Política de Cookies - VideoVibeTok')
+@section('og_description', 'Explicamos qué cookies usamos en VideoVibeTok, por qué las usamos y cómo puedes administrarlas (cookies esenciales, analíticas y de marketing).')
+@section('og_image', asset('assets/img/og/cookies-1200x630.png'))
+@section('twitter_card', 'summary_large_image')
 
 @section('content')
     <div class="flex-1 w-full max-w-[1400px] mx-auto px-4 py-8 md:px-10 md:py-12">
         <div class="mb-12 max-w-[960px] mx-auto text-center md:text-left">
             <h1
                 class="text-slate-900 dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] mb-4">
-                Política de cookies</h1>
-            <p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Última actualización: Enero
-                01, 2026</p>
+                Política de Cookies de <span class="text-primary">{{ config('services.vars.appName') }}</span>
+            </h1>
+            <p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Entendemos la importancia de la privacidad: aquí describimos qué cookies y tecnologías de seguimiento usamos (esenciales, analíticas y de marketing), por qué las usamos y cómo puedes gestionarlas. Última actualización: <span class="font-medium">Enero 01, 2026</span></p>
         </div>
         <div class="flex flex-col lg:flex-row gap-12">
             <aside class="hidden lg:block w-64 flex-shrink-0">

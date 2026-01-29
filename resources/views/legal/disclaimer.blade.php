@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Aviso Legal')
+@section('title', 'Aviso Legal - VideoVibeTok')
+
+@section('meta_description')
+Lee el aviso legal de VideoVibeTok: información sobre afiliación, uso permitido, limitación de responsabilidad y derechos de propiedad intelectual. Mantente informado sobre las condiciones legales del servicio.
+@endsection
+
+@section('meta_keywords', 'aviso legal, disclaimer, VideoVibeTok, términos legales, responsabilidad, derechos de autor')
+
+@section('og_title', 'Aviso Legal - VideoVibeTok')
+@section('og_description', 'Información legal sobre el uso de VideoVibeTok: afiliación, limitación de responsabilidad y derechos de propiedad intelectual.')
+@section('og_image', asset('assets/img/og/disclaimer-1200x630.png'))
+@section('twitter_card', 'summary_large_image')
 
 @section('content')
     <div class="layout-container flex h-full grow flex-col py-10">
@@ -11,10 +22,9 @@
                         <span class="material-symbols-outlined !text-3xl">gavel</span>
                     </div>
                     <h1
-                        class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">Aviso Legal</h1>
+                        class="text-[#111418] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">Aviso Legal de <span class="text-primary">{{ config('services.vars.appName') }}</span></h1>
                     <p class="text-[#60758a] dark:text-gray-400 text-lg font-normal leading-normal max-w-[600px]">
-                       Por favor, lea cuidadosamente la siguiente información legal sobre el uso de nuestros servicios.
-                        La transparencia y el cumplimiento son nuestras principales prioridades.
+                        Por favor, lea cuidadosamente la siguiente información legal sobre el uso de nuestros servicios. Aquí aclaramos nuestra relación con terceros, las responsabilidades del usuario, así como las limitaciones de garantía y derechos de propiedad intelectual aplicables al uso de {{ config('services.vars.appName') }}.
                     </p>
                 </div>
                 

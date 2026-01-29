@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Términos & Condiciones')
+@section('title', 'Términos y Condiciones - VideoVibeTok')
+
+@section('meta_description')
+Lee los Términos y Condiciones de VideoVibeTok. Aquí encontrarás las reglas de uso del servicio, limitaciones de responsabilidad, derechos de propiedad intelectual y la política sobre enlaces de terceros. Última actualización: 01 de enero de 2026.
+@endsection
+
+@section('meta_keywords', 'términos y condiciones, VideoVibeTok, descargas TikTok, política de uso, limitación de responsabilidad')
+
+@section('og_title', 'Términos y Condiciones - VideoVibeTok')
+@section('og_description', 'Consulta los términos legales que rigen el uso de VideoVibeTok — reglas de uso, propiedad intelectual y limitación de responsabilidad.')
+@section('og_image', asset('assets/img/og/terms-1200x630.png'))
+@section('twitter_card', 'summary_large_image')
 
 @section('content')
     <div class="flex-grow w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
@@ -11,9 +22,9 @@
                 Información legal
             </div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-[#111418] text-[#111418] dark:text-white tracking-tight">
-                Términos y condiciones
+                Términos y Condiciones de <span class="text-primary">{{ config('services.vars.appName') }}</span>
             </h1>
-            <p class="text-text-sub dark:text-gray-400 text-lg max-w-2xl mx-auto"> Por favor, lea estos términos atentamente antes de utilizar nuestros servicios. Última actualización el <span class="font-medium text-[#111418] dark:text-white">01 de enero de 2026</span>. </p>
+            <p class="text-text-sub dark:text-gray-400 text-lg max-w-2xl mx-auto">Por favor, lea estos términos atentamente antes de utilizar nuestros servicios. Estos Términos describen las condiciones de uso, las limitaciones de responsabilidad y las políticas sobre propiedad intelectual y terceros. Última actualización: <span class="font-medium text-[#111418] dark:text-white">01 de enero de 2026</span>.</p>
         </div>
         <div class="flex flex-col lg:flex-row gap-12 relative">
             

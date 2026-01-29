@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Cómo utilizar')
+@section('title', 'Cómo utilizar - Guía para Descargar TikToks | VideoVibeTok')
+
+@section('meta_description')
+Aprende paso a paso cómo descargar videos de TikTok en MP4 sin marcas de agua con VideoVibeTok. Guía rápida, consejos de calidad y compatibilidad con todos los dispositivos.
+@endsection
+
+@section('meta_keywords', 'cómo descargar tiktok, descargar tiktoks sin marca de agua, guía descargar tiktok, VideoVibeTok, descargar mp4')
+
+@section('og_title', 'Cómo descargar TikToks sin marca de agua — Guía VideoVibeTok')
+@section('og_description', 'Sigue nuestra guía paso a paso para guardar videos TikTok en MP4 sin marcas de agua. Compatible con iPhone, Android y PC. Rápido y gratuito.')
+@section('og_image', asset('assets/img/og/howto-1200x630.png'))
+@section('twitter_card', 'summary_large_image')
 
 @section('content')
     <div class="flex-1 flex flex-col items-center py-10 px-4 md:px-10 lg:px-40 gap-12 w-full max-w-7xl mx-auto">
@@ -9,10 +20,10 @@
                 class="bg-blue-100 dark:bg-blue-900/30 text-primary px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase">Guía del usuario</span>
             <h1
                 class="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-[-0.033em] text-slate-900 dark:text-white">
-                Cómo descargar TikToks <span class="text-primary">sin marcas de agua</span>
+                Cómo descargar TikToks <span class="text-primary">sin marcas de agua</span> — <span class="text-primary">{{ config('services.vars.appName') }}</span>
             </h1>
             <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-normal leading-relaxed max-w-[640px]">
-                Nuestra herramienta es rápida, gratuita e increíblemente sencilla. Sigue esta guía para guardar videos MP4 de alta calidad en tu dispositivo en segundos.
+                Rápido, gratuito y sencillo: esta guía paso a paso te muestra cómo guardar TikToks en formato MP4 sin marcas de agua, conservar la máxima calidad y usar la herramienta en cualquier dispositivo.
             </p>
         </section>
         
