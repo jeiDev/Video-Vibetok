@@ -1,11 +1,10 @@
 # VideoVibeTok - robots.txt
-# Last updated: January 29, 2026
+# Last updated: February 02, 2026
 
-# Allow all bots
 User-agent: *
 Allow: /
 
-# Disallow private/admin paths
+# Bloquear solo rutas críticas de servidor y sistema
 Disallow: /admin/
 Disallow: /api/
 Disallow: /dashboard/
@@ -19,38 +18,15 @@ Disallow: /tests/
 Disallow: /vendor/
 Disallow: /node_modules/
 
-# Disallow temporary files
-Disallow: /*.php$
-Disallow: /*.js$
-Disallow: /*.css$
+# Bloquear parámetros de búsqueda/filtrado que crean contenido duplicado
 Disallow: /*?*sort=
 Disallow: /*?*filter=
 
-# Allow specific file extensions
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.gif$
-Allow: /*.svg$
-Allow: /*.webp$
+# Permitir explícitamente rastreo de recursos para renderizado (SEO moderno)
+Allow: /resources/*.css
+Allow: /resources/*.js
+Allow: /public/*.css
+Allow: /public/*.js
 
-# Crawl delay (optional - adjust based on server capacity)
-Crawl-delay: 1
-
-# Sitemaps
+# Sitemaps (SOLO archivos XML)
 Sitemap: https://videovibetok.com/sitemap.xml
-
-# Language versions - help search engines understand language targeting
-# English
-Sitemap: https://videovibetok.com/en/
-
-# Spanish
-Sitemap: https://videovibetok.com/es/
-
-# French
-Sitemap: https://videovibetok.com/fr/
-
-# Portuguese
-Sitemap: https://videovibetok.com/pt/
