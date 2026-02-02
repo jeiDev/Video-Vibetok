@@ -82,7 +82,7 @@
 [ ] FAQ - legal/faq.blade.php
 [ ] Términos - legal/terms-conditions.blade.php
 [ ] Privacidad - legal/privacy.blade.php
-[ ] Cookies - legal/cookie-policity.blade.php
+[ ] Cookies - legal/cookie-policy.blade.php
 [ ] Disclaimer - legal/disclaimer.blade.php
 ```
 

@@ -3,7 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Legal\CookiePolicityController;
+use App\Http\Controllers\Legal\CookiePolicyController;
 use App\Http\Controllers\Legal\DisclaimerController;
 use App\Http\Controllers\Legal\FaqController;
 use App\Http\Controllers\Legal\HowUseController;
@@ -40,7 +40,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'es|en|pt|fr']], f
     // Páginas Legales
     Route::get('/disclaimer', [DisclaimerController::class, 'index'])->name('legal.disclaimer');
     Route::get('/faq', [FaqController::class, 'index'])->name('legal.faq');
-    Route::get('/cookie-policity', [CookiePolicityController::class, 'index'])->name('legal.cookie-policity');
+    Route::get('/cookie-policy', [CookiePolicyController::class, 'index'])->name('legal.cookie-policy');
     Route::get('/terms-conditions', [TermsConditionsController::class, 'index'])->name('legal.terms-conditions');
     Route::get('/privacy-policy', [PrivacyPolicyController::class, 'index'])->name('legal.privacy');
 

@@ -328,7 +328,7 @@
                             </a>
 
                             <a class="text-[#60758a] text-sm hover:text-primary dark:text-gray-500 dark:hover:text-cyan-400 transition-colors"
-                                href="{{ route('legal.cookie-policity') }}">
+                                href="{{ route('legal.cookie-policy') }}">
                                 {{ __('layout.footer_cookies') }}
                             </a>
 
