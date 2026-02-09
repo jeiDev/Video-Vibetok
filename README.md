@@ -1,66 +1,265 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Proyecto: TiktokVideoProcessor & Webpage
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este repositorio contiene dos proyectos que trabajan juntos:
 
-## About Laravel
+- **TiktokVideoProcessor**: Procesador en Python que descarga videos de TikTok sin marca de agua, convierte a HD/SD y extrae MP3, además de descargar metadatos del video.
+- **Webpage**: Aplicación web en Laravel que ofrece la interfaz visual y se comunica con el procesador Python (colas/RabbitMQ).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este README explica qué hace cada proyecto, cómo instalar dependencias, configurar RabbitMQ, y cómo ejecutar ambos proyectos en local y en producción (Ubuntu).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Estructura principal**
+- TiktokVideoProcessor/: código Python del procesador
+- Webpage/: aplicación Laravel (frontend y backend)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Requisitos generales**
+- Git
+- Docker (recomendado para servicios opcionales como RabbitMQ en desarrollo)
+- Python 3.8+ (recomendado 3.10+)
+- PHP 8.0+ (según versión Laravel del proyecto)
+- Composer
+- Node.js & npm/yarn (para assets de Laravel)
 
-## Learning Laravel
+------------------------------------------------------------
+**1) RabbitMQ — instalación & configuración**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Recomendado: usar Docker en desarrollo, y `rabbitmq-server` en producción (Ubuntu).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Usar Docker (desarrollo / local):
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+docker run -d --name rabbitmq \
+  -p 5672:5672 -p 15672:15672 \
+  -e RABBITMQ_DEFAULT_USER=devuser \
+  -e RABBITMQ_DEFAULT_PASS=devpass \
+  rabbitmq:3-management
+```
 
-## Laravel Sponsors
+Accede a la consola de administración en http://localhost:15672 (usuario/devuser:devpass).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Instalación en Ubuntu (producción):
 
-### Premium Partners
+```bash
+sudo apt update
+sudo apt install -y rabbitmq-server
+sudo systemctl enable --now rabbitmq-server
+sudo rabbitmq-plugins enable rabbitmq_management
+# Crear usuario y asignar permisos (ejemplo)
+sudo rabbitmqctl add_user produser prodpass
+sudo rabbitmqctl add_vhost /my_vhost
+sudo rabbitmqctl set_permissions -p /my_vhost produser ".*" ".*" ".*"
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Asegura puertos en firewall: 5672 (AMQP) y 15672 (management) según necesidad.
 
-## Contributing
+Variables de conexión típicas (reemplazar credenciales):
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- AMQP URL: `amqp://user:pass@host:5672/vhost`
 
-## Code of Conduct
+------------------------------------------------------------
+**2) TiktokVideoProcessor (Python)**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Descripción: descarga videos de TikTok sin marca de agua, genera versiones HD/SD/MP3, guarda archivos y publica resultados/estatus vía RabbitMQ.
 
-## Security Vulnerabilities
+Ubicación: `TiktokVideoProcessor/`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Pasos básicos (local / desarrollo):
 
-## License
+1. Crear y activar un entorno virtual (recomendado):
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS / Linux
+source .venv/bin/activate
+```
+
+2. Instalar dependencias:
+
+```bash
+pip install -r TiktokVideoProcessor/requirements.txt
+```
+
+3. Configurar variables de entorno (ejemplo `.env` o export):
+
+- `RABBITMQ_URL=amqp://devuser:devpass@localhost:5672/`
+- `OUTPUT_DIR=downloads/`
+- `LOG_LEVEL=INFO`
+- Otros parámetros: API keys, tiempo de conversión, etc. (revisar `TiktokVideoProcessor/config.py` o `main.py`).
+
+4. Ejecutar el procesador (modo desarrollo):
+
+```bash
+python TiktokVideoProcessor/main.py
+```
+
+Notas de producción (Ubuntu):
+
+- Crear virtualenv igual que en desarrollo.
+- Usar un servicio `systemd` para ejecutar el consumidor/worker de forma persistente. Ejemplo de unidad `systemd`:
+
+```ini
+[Unit]
+Description=TiktokVideoProcessor worker
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/path/to/project/TiktokVideoProcessor
+Environment="PATH=/path/to/project/TiktokVideoProcessor/.venv/bin"
+ExecStart=/path/to/project/TiktokVideoProcessor/.venv/bin/python main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+- Habilitar y arrancar: `sudo systemctl enable --now tiktokprocessor.service` (ajustar nombres y paths).
+
+------------------------------------------------------------
+**3) Webpage (Laravel)**
+
+Descripción: interfaz web en Laravel que muestra resultados y se comunica con el procesador Python a través de colas (RabbitMQ) y websockets.
+
+Ubicación: `Webpage/`
+
+Pasos básicos (local / desarrollo):
+
+1. Copiar `.env` desde `.env.example` y configurar:
+
+- `DB_*` (base de datos)
+- `RABBITMQ_HOST`, `RABBITMQ_PORT`, `RABBITMQ_USER`, `RABBITMQ_PASS` (o `BROADCAST_DRIVER`, `PUSHER_*` según configuración)
+
+2. Instalar dependencias PHP y JS:
+
+```bash
+cd Webpage
+composer install --no-interaction --prefer-dist
+npm install
+npm run dev   # o `npm run build` para producción
+php artisan key:generate
+php artisan migrate --force   # si aplica
+php artisan storage:link
+```
+
+3. Comandos importantes (debe correr siempre):
+
+- `php artisan tiktok:listen-results`  # escucha resultados desde RabbitMQ y procesa/almacena
+- `php artisan websockets:serve`       # servidor de websockets (para Broadcaster / realtime)
+
+En desarrollo puede ejecutarlos en terminales separadas o usar `supervisor`/`systemd` en producción.
+
+Ejecutar localmente (rápido):
+
+```bash
+php artisan serve --host=127.0.0.1 --port=8000
+# En otra terminal:
+php artisan tiktok:listen-results
+php artisan websockets:serve
+```
+
+Producción (Ubuntu) — puntos clave:
+
+- Servidor web: Nginx + PHP-FPM. Configurar sitio apuntando a `public/`.
+- Queue / Listeners: usar `supervisor` o `systemd` para ejecutar `php artisan tiktok:listen-results` y otros `queue:work`.
+- Websockets: ejecutar `php artisan websockets:serve` como servicio con `systemd` o `supervisor`.
+
+Ejemplo unit `systemd` para el comando websockets:
+
+```ini
+[Unit]
+Description=Laravel Websockets
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/var/www/Webpage
+ExecStart=/usr/bin/php /var/www/Webpage/artisan websockets:serve
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Y para `tiktok:listen-results` reemplazando el comando ExecStart.
+
+------------------------------------------------------------
+**4) Flujo operativo (alto nivel)**
+
+1. Un usuario solicita procesar un video desde la `Webpage` (frontend).
+2. `Webpage` encola un trabajo/publica un mensaje en RabbitMQ con la URL del video.
+3. `TiktokVideoProcessor` consume la cola, descarga el video, genera HD/SD/MP3, guarda archivos en `downloads/` y publica el resultado/estado en otra cola o retorna metadata.
+4. `Webpage` (escuchando con `php artisan tiktok:listen-results`) recibe resultados y actualiza UI / base de datos; además puede emitir eventos por websockets a los clientes.
+
+------------------------------------------------------------
+**5) Checklist rápido — Desarrollo local**
+
+- [ ] Correr RabbitMQ (Docker) o servicio local
+- [ ] Configurar `.env` en `Webpage/` y variables en `TiktokVideoProcessor`
+- [ ] Crear virtualenv e instalar dependencias Python
+- [ ] `composer install` y `npm install` en `Webpage/`
+- [ ] Ejecutar `php artisan migrate`, `php artisan storage:link`
+- [ ] Ejecutar `php artisan tiktok:listen-results` y `php artisan websockets:serve`
+- [ ] Ejecutar `python TiktokVideoProcessor/main.py` (o el comando worker que corresponda)
+
+------------------------------------------------------------
+**6) Sugerencias de despliegue**
+
+- Usar Docker Compose en producción o staging para orquestar Nginx, PHP-FPM, Redis (si necesario), RabbitMQ y el servicio Python.
+- Registrar servicios persistentes con `systemd` o `supervisord`.
+- Habilitar HTTPS (Let’s Encrypt) en Nginx.
+- Monitorizar colas y logs, configurar rotación de logs.
+
+------------------------------------------------------------
+**7) Variables de entorno de ejemplo**
+
+Webpage `.env` (fragmento):
+
+```
+APP_NAME=MyApp
+APP_ENV=local
+APP_URL=http://localhost:8000
+
+# RabbitMQ
+RABBITMQ_HOST=127.0.0.1
+RABBITMQ_PORT=5672
+RABBITMQ_USER=devuser
+RABBITMQ_PASS=devpass
+
+# Broadcasting / Websockets (ejemplo si usa pusher driver)
+BROADCAST_DRIVER=pusher
+PUSHER_APP_ID=...
+PUSHER_APP_KEY=...
+PUSHER_APP_SECRET=...
+PUSHER_APP_CLUSTER=mt1
+```
+
+TiktokVideoProcessor `.env` (ejemplo):
+
+```
+RABBITMQ_URL=amqp://devuser:devpass@127.0.0.1:5672/
+OUTPUT_DIR=downloads/
+LOG_LEVEL=INFO
+# API/keys u otros ajustes
+```
+
+------------------------------------------------------------
+**8) Troubleshooting rápido**
+
+- Si no conectan colas: probar `telnet host 5672` o revisar `rabbitmq-server` logs.
+- Revisar credenciales y vhost en RabbitMQ.
+- Asegurarse de que `php artisan websockets:serve` usa la misma configuración de broadcaster que el frontend.
+
+------------------------------------------------------------
+**9) Próximos pasos recomendados**
+
+- Añadir ejemplo mínimo de `.env.example` en ambos proyectos con variables necesarias.
+- Documentar los nombres de colas y el payload (formatos de mensajes) entre `Webpage` y `TiktokVideoProcessor`.
+- Crear `docker-compose.yml` para el conjunto (PHP-FPM, Nginx, RabbitMQ, Python worker, DB) para despliegue reproducible.
+
+------------------------------------------------------------
+Si quieres, genero:
+- Un `docker-compose.yml` para desarrollo con RabbitMQ, PHP-FPM, Nginx y worker Python.
+- Un archivo `systemd` de ejemplo ya parametrizado para tu proyecto en Ubuntu.
+
+Dime cuál de las dos opciones quieres que genere ahora.

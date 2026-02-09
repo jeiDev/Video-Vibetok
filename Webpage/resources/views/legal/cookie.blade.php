@@ -51,7 +51,7 @@
                         <h4 class="font-bold text-lg mb-2">{{ __('cookie.sidebar_privacy_title') }}</h4>
                         <p class="text-blue-100 text-sm mb-4">{{ __('cookie.sidebar_privacy_text') }}</p> <a
                             class="inline-block text-sm font-bold underline decoration-2 underline-offset-2 hover:text-white/90"
-                            href="#">{{ __('cookie.sidebar_privacy_link') }}</a>
+                            href="{{ route('legal.privacy') }}">{{ __('cookie.sidebar_privacy_link') }}</a>
                     </div>
                 </div>
             </aside>
@@ -95,25 +95,46 @@
                             <table class="w-full text-sm text-left">
                                 <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold">
                                     <tr>
-                                        <th class="px-6 py-4">Nombre</th>
-                                        <th class="px-6 py-4">Proveedor</th>
-                                        <th class="px-6 py-4">Propósito</th>
-                                        <th class="px-6 py-4">Caducidad</th>
+                                        <th class="px-6 py-4">{{ __('cookie.table_header_name') }}</th>
+                                        <th class="px-6 py-4">{{ __('cookie.table_header_provider') }}</th>
+                                        <th class="px-6 py-4">{{ __('cookie.table_header_purpose') }}</th>
+                                        <th class="px-6 py-4">{{ __('cookie.table_header_expiry') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                                     <tr>
-                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">{{ __('cookie.cookie_xsrf_name') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_xsrf_provider') }} </td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_xsrf_purpose') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_xsrf_expiry') }}</td>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">video_vibetok_session</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">videovibetok.com</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Mantiene el estado de la sesión del usuario (login, preferencias temporales).</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Sesión / 1 día</td>
                                     </tr>
+
                                     <tr>
-                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">{{ __('cookie.cookie_consent_name') }}
-                                        </td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_consent_provider') }} </td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_consent_purpose') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_consent_expiry') }}</td>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">XSRF-TOKEN</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">videovibetok.com</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Protección contra ataques de falsificación de solicitudes entre sitios (seguridad).</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Sesión / 1 día</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">AEC</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Google</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Garantiza que las solicitudes sean enviadas por el usuario real y no por software malicioso.</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">6 meses</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">__Secure-1PSID, SID, HSID</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Google</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Autenticación de la cuenta de Google y protección contra el uso fraudulento de credenciales.</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">2 años</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">SEARCH_SAMESITE</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Google</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Gestión interna para el envío seguro de datos de búsqueda.</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">6 meses</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -150,16 +171,38 @@
                                 </thead>
                                 <tbody class="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
                                     <tr>
-                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">{{ __('cookie.cookie_gads_name') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_gads_provider') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_gads_purpose') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_gads_expiry') }}</td>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">IDE / DSID</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">DoubleClick (Google)</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Utilizada para registrar las acciones del usuario tras ver o hacer clic en un anuncio (conversión).</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">1 año</td>
                                     </tr>
+
                                     <tr>
-                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">{{ __('cookie.cookie_ide_name') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_ide_provider') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_ide_purpose') }}</td>
-                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">{{ __('cookie.cookie_ide_expiry') }}</td>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">_ga, _ga_XXXX</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Google Analytics</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">ID anónimo utilizado para generar datos estadísticos sobre cómo el visitante utiliza el sitio web.</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">2 años</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">_gcl_au</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Google AdSense</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Utilizada para experimentar con la eficiencia publicitaria en sitios web que usan sus servicios.</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">3 meses</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">NID</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Google</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Registra un ID único que identifica el dispositivo del usuario para anuncios personalizados en servicios de Google.</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">6 meses</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">ADS_VISITOR_ID</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Google</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">Identificador de visitante para la gestión de publicidad dirigida.</td>
+                                        <td class="px-6 py-4 text-slate-600 dark:text-slate-400">3 meses</td>
                                     </tr>
                                 </tbody>
                             </table>
